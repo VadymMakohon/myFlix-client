@@ -16,21 +16,30 @@ export const MainView = () => {
         },
         {
             id: 2,
-            title: 'Inception',
-            description: 'Inception is a 2010 science fiction action film written and directed by Christopher Nolan, who also produced the film with his wife, Emma Thomas. Dom Cobb, a professional thief, steals information by infiltrating the subconscious of his targets. He is offered a chance to have his criminal history erased as payment for the implantation of another person\'s idea into a target\'s subconscious.',
-            genre: ['Action', 'Sci-Fi'],
-            director: 'Christopher Nolan',
-            image: 'https://media.themoviedb.org/t/p/original/sUTfSTpMkJBkWdHw99z4goKHKkL.jpg',
-            featured: false
+            title: 'The Matrix',
+            description: 'The Wachowskis groundbreaking science fiction film that explores the concept of reality and identity within a simulated world. A mind-bending adventure that questions the nature of existence.',
+            genre: ['Science Fiction'],
+            director: 'Quentin Tarantino',
+            image: 'https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg',
+            featured: true
         },
         {
             id: 3,
-            title: 'The Shawshank Redemption',
-            description: 'The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont, based on the 1982 Stephen King novella Rita Hayworth and Shawshank Redemption. Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
-            genre: ['Drama'],
-            director: 'Frank Darabont',
-            image: 'https://media.themoviedb.org/t/p/original/9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg',
-            featured: false
+            title: 'Inception',
+            description: 'Inception is a mind-bending science fiction thriller directed by Christopher Nolan. The film explores the concept of dreams within dreams, taking the audience on a visually stunning and intellectually stimulating journey through layers of subconsciousness.',
+            genre: ['Science Fiction'],
+            director: 'Christopher Nolan',
+            image: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg',
+            featured: true
+        },
+        {
+            id: 4,
+            title: 'The Dark Knight',
+            description: 'A gripping superhero film directed by Christopher Nolan, delving into the complexities of justice and morality.',
+            genre: 'Action',
+            director: 'Christopher Nolan',
+            image: 'https://m.media-amazon.com/images/I/91KkWf50SoL._AC_UF894,1000_QL80_.jpg',
+            featured: true
         }
     ]);
 
