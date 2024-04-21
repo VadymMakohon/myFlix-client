@@ -7,7 +7,7 @@ export const MainView = () => {
 
     const [directors, setDirectors] = useState([]);
     useEffect(() => {
-        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/directors/directorName")
+        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies/directors")
             .then((response) => response.json())
             .then((data) => {
                 const directorsFromApi = data.map((director) => {
