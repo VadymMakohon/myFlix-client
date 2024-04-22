@@ -27324,66 +27324,56 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "La Femme Nikita",
-            description: "Is a 1990 French-language action thriller film written and directed by Luc Besson.A teen criminal who is convicted and sentenced to life imprisonment for murdering policemen during an armed pharmacy robbery. Her government handlers fake her death and recruit her as a professional assassin. After intense training, she starts a career as a killer, where she struggles to balance her work with her personal life. She shows talent at this and her career progresses until a mission in an embassy goes awry.",
-            genre: [
-                "Action"
-            ],
-            director: "Luc Besson",
-            image: "https://media.themoviedb.org/t/p/original/owzoJZoIIRgRyAbr8rx78wkCJaj.jpg",
-            featured: true
-        },
-        {
-            id: 2,
-            title: "The Matrix",
-            description: "The Wachowskis groundbreaking science fiction film that explores the concept of reality and identity within a simulated world. A mind-bending adventure that questions the nature of existence.",
-            genre: [
-                "Science Fiction"
-            ],
-            director: "Quentin Tarantino",
-            image: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
-            featured: true
-        },
-        {
-            id: 3,
-            title: "Inception",
-            description: "Inception is a mind-bending science fiction thriller directed by Christopher Nolan. The film explores the concept of dreams within dreams, taking the audience on a visually stunning and intellectually stimulating journey through layers of subconsciousness.",
-            genre: [
-                "Science Fiction"
-            ],
-            director: "Christopher Nolan",
-            image: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
-            featured: true
-        },
-        {
-            id: 4,
-            title: "The Dark Knight",
-            description: "A gripping superhero film directed by Christopher Nolan, delving into the complexities of justice and morality.",
-            genre: "Action",
-            director: "Christopher Nolan",
-            image: "https://m.media-amazon.com/images/I/91KkWf50SoL._AC_UF894,1000_QL80_.jpg",
-            featured: true
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onBackClick: ()=>{
-            setSelectedMovie(null);
+    (0, _react.useEffect)(()=>{
+        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.map((movie)=>{
+                return {
+                    id: movie.key,
+                    title: movie.Title,
+                    genre: movie.Genre,
+                    description: movie.Description,
+                    director: movie.Director
+                };
+            });
+            setMovies(moviesFromApi);
+        // console.log( 'hdfsgfd', directors);
+        });
+    }, []);
+    let allowedOrigins = [
+        "http://localhost:8080",
+        "http://localhost:1234"
+    ];
+    app.use(cors({
+        origin: (origin, callback)=>{
+            if (!origin) return callback(null, true);
+            if (allowedOrigins.indexOf(origin) === -1) {
+                let message = "The CORS policy for this application doesn`t allow access from origin " + origin;
+                return callback(new Error(message), false);
+            }
+            return callback(null, true);
         }
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 50,
-        columnNumber: 13
-    }, undefined);
+    }));
+    if (selectedMovie) {
+        const directorName = directors.filter((director)=>director.id === selectedMovie.director);
+        selectedMovie.director = directorName[0].name;
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+            movie: selectedMovie,
+            onBackClick: ()=>{
+                setSelectedMovie(null);
+            }
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 48,
+            columnNumber: 13
+        }, undefined);
+    }
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 60,
+        lineNumber: 58,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27392,18 +27382,18 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
-            }, movie.id, false, {
+            }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 65,
+                lineNumber: 63,
                 columnNumber: 17
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 63,
+        lineNumber: 61,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "KwJ9N+STdckGcBshL73yMDYsTmQ=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
