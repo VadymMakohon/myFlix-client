@@ -5,21 +5,6 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
-    const [directors, setDirectors] = useState([]);
-    useEffect(() => {
-        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies/directors")
-            .then((response) => response.json())
-            .then((data) => {
-                const directorsFromApi = data.map((director) => {
-                    return {
-                        id: director._id,
-                        name: director.Name
-                    };
-                });
-                setDirectors(directorsFromApi)
-            })
-    }, []);
-
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
