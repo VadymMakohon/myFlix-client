@@ -14,7 +14,7 @@
         "Birth": "1944",
         "Death": "2017"
     },
-    "ImagePath": "silenceofthelambs.png",
+    "ImagePath": "https://m.media-amazon.com/images/I/51SHYSFNP2L._SY445_.jpg",
     "Featured": true
 }
 {
@@ -31,7 +31,7 @@
         "Name": "Christopher Nolan",
         "Bio": "British-American film director, producer, and screenwriter, who droped out from the university persuing the dream to get to the Hoolywood "
     },
-    "ImagePath": "inception.png",
+    "ImagePath": "https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/",
     "Featured": false
 }
 {
@@ -48,7 +48,7 @@
         "Name": "Christopher Nolan",
         "Bio": "British-American film director, producer, and screenwriter, who droped out from the university persuing the dream to get to the Hoolywood "
     },
-    "ImagePath": "thedarkknight.png",
+    "ImagePath": "https://rare-gallery.com/thumbnail/5435099-joker-heath-ledger-the-dark-knight.jpg",
     "Featured": false
 }
 {
@@ -65,7 +65,7 @@
         "Name": "Quentin Tarantino",
         "Bio": "American film director, author, and actor."
     },
-    "ImagePath": "pulpfiction.png",
+    "ImagePath": "https://fbi.cults3d.com/uploaders/15922933/illustration-file/bc39e713-4b4b-4b20-9b38-3ccaee007f95/pulp-fiction.png",
     "Featured": true
 }
 {
@@ -82,7 +82,7 @@
         "Name": "Quentin Tarantino",
         "Bio": "American film director, author, and actor."
     },
-    "ImagePath": "djangounchained.png",
+    "ImagePath": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b27916cd-0de1-460e-b3e6-eece51503b92/dbin39g-65077f3e-1829-46b7-a641-07d21d6a7826.png/v1/fit/w_512,h_512/django_unchained__2012__folder_icon_by_humbertog_dbin39g-375w-2x.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTEyIiwicGF0aCI6IlwvZlwvYjI3OTE2Y2QtMGRlMS00NjBlLWIzZTYtZWVjZTUxNTAzYjkyXC9kYmluMzlnLTY1MDc3ZjNlLTE4MjktNDZiNy1hNjQxLTA3ZDIxZDZhNzgyNi5wbmciLCJ3aWR0aCI6Ijw9NTEyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.k8W5kFYGrAN27dGopc8TOKR25InDOhGkY9HM417f6QA",
     "Featured": true
 }
 {
@@ -99,7 +99,7 @@
         "Name": "Martin Scorsese",
         "Bio": "American-Italian film director, producer, screenwriter, and actor."
     },
-    "ImagePath": "shutterisland.png",
+    "ImagePath": "https://img1.od-cdn.com/ImageType-400/4987-1/2ED/773/B5/%7B2ED773B5-33A3-42FA-BA28-CE40703AFEBE%7DImg400.jpg",
     "Featured": false
 }
 {
@@ -116,7 +116,7 @@
         "Name": "Christopher Nolan",
         "Bio": "British-American film director, producer, and screenwriter, who droped out from the university persuing the dream to get to the Hoolywood "
     },
-    "ImagePath": "interstellar.png",
+    "ImagePath": "https://m.media-amazon.com/images/I/91otkGHTTiL._SL1500_.jpg",
     "Featured": false
 }
 {
@@ -133,7 +133,7 @@
         "Name": "Martin Scorsese",
         "Bio": "American-Italian film director, producer, screenwriter, and actor."
     },
-    "ImagePath": "thedeparted.png",
+    "ImagePath": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/32fd6f0b-56e3-4b22-9023-5cdf759d81be/da71e0l-9ecc15f1-b430-400f-90d3-db344cb3d9ef.png/v1/fit/w_512,h_512/the_departed__2006__by_prast23_da71e0l-375w-2x.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTEyIiwicGF0aCI6IlwvZlwvMzJmZDZmMGItNTZlMy00YjIyLTkwMjMtNWNkZjc1OWQ4MWJlXC9kYTcxZTBsLTllY2MxNWYxLWI0MzAtNDAwZi05MGQzLWRiMzQ0Y2IzZDllZi5wbmciLCJ3aWR0aCI6Ijw9NTEyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.dMhi3XVw6W2tBaSH-cSLGo9bU-Xu_qP_ZSIiMcIahOU",
     "Featured": false
 }
 {
@@ -150,7 +150,7 @@
         "Name": "Martin Scorsese",
         "Bio": "American-Italian film director, producer, screenwriter, and actor."
     },
-    "ImagePath": "thewolfofwallstreet.png",
+    "ImagePath": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/5a344cbd-f1b5-47c1-b639-2e2a5fbd2efe/da98ddx-1f5ecae7-2b17-4d0b-9816-016bcba895bf.jpg/v1/fit/w_650,h_750,q_70,strp/the_wolf_of_wall_street__2013__folder_icon_by_ahmternbrs60_da98ddx-375w-2x.jpg",
     "Featured": false
 }
 {
@@ -167,6 +167,6 @@
         "Name": "Lana Wachowski",
         "Bio": "American film director, screenwriter, and producer."
     },
-    "ImagePath": "thematrix.png",
+    "ImagePath": "https://i5.walmartimages.com/seo/The-Matrix-Reloaded-movie-POSTER-Style-L-11-x-17-2003_683cd449-d366-469f-91f6-bb01b3849cbf.11879a574efced3ca7f6be97237f020c.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
     "Featured": false
 }
