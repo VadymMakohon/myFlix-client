@@ -27329,7 +27329,7 @@ const MainView = ()=>{
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>{
                 return {
-                    id: movie.key,
+                    id: movie._id,
                     title: movie.Title,
                     genre: movie.Genre,
                     description: movie.Description,
@@ -28285,7 +28285,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.genre
+                        children: movie.genre.name
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 19,
@@ -28339,8 +28339,14 @@ MovieView.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         title: (0, _propTypesDefault.default).string.isRequired,
         description: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).string.isRequired,
-        director: (0, _propTypesDefault.default).string
+        genre: (0, _propTypesDefault.default).shape({
+            name: (0, _propTypesDefault.default).string,
+            desctription: (0, _propTypesDefault.default).string
+        }).isRequired,
+        director: (0, _propTypesDefault.default).shape({
+            name: (0, _propTypesDefault.default).string,
+            desctription: (0, _propTypesDefault.default).string
+        }).isRequired
     }).isRequired,
     onBackClick: (0, _propTypesDefault.default).func.isRequired
 };
