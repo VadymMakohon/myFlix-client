@@ -28343,6 +28343,7 @@ _c = MovieView;
 MovieView.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         title: (0, _propTypesDefault.default).string.isRequired,
+<<<<<<< Updated upstream
         description: (0, _propTypesDefault.default).shape({
             name: (0, _propTypesDefault.default).string,
             description: (0, _propTypesDefault.default).string
@@ -28351,6 +28352,11 @@ MovieView.propTypes = {
             name: (0, _propTypesDefault.default).string,
             description: (0, _propTypesDefault.default).string
         }).isRequired
+=======
+        description: (0, _propTypesDefault.default).string.isRequired,
+        genre: (0, _propTypesDefault.default).string.isRequired,
+        director: (0, _propTypesDefault.default).string
+>>>>>>> Stashed changes
     }).isRequired,
     onBackClick: (0, _propTypesDefault.default).func.isRequired
 };
