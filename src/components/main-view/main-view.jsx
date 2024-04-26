@@ -15,7 +15,6 @@ export const MainView = () => {
     if (!token) {
         return;
     }
-
     useEffect(() => {
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
