@@ -8,7 +8,7 @@ export const MainView = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
-        fetch("https://cine-verse-b8832aa84c3e.herokuapp.com/movies")
+        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies")
             .then((response) => response.json())
             .then((data) => {
                 const moviesFromApi = data.map((movie) => {
@@ -17,7 +17,8 @@ export const MainView = () => {
                         title: movie.Title,
                         genre: movie.Genre,
                         description: movie.Description,
-                        director: movie.Director
+                        director: movie.Director,
+                        image: movie.ImagePath
 
                     };
                 });
@@ -47,7 +48,7 @@ export const MainView = () => {
         <div>
             {movies.map((movie) => (
                 <MovieCard
-                    key={movie._id}
+                    key={movie.id}
                     movie={movie}
                     onMovieClick={(newSelectedMovie) => {
                         setSelectedMovie(newSelectedMovie);
