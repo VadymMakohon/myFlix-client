@@ -15,9 +15,9 @@ export const MainView = () => {
                     return {
                         id: movie._id,
                         title: movie.Title,
-                        genre: movie.Genre,
+                        genre: movie.Genre.Name,
                         description: movie.Description,
-                        director: movie.Director,
+                        director: movie.Director.Name,
                         image: movie.ImagePath
 
                     };
@@ -28,28 +28,20 @@ export const MainView = () => {
     }, []);
 
     if (selectedMovie) {
-        const directorName = directors.filter((director) => director.id === selectedMovie.director);
-        selectedMovie.director = directorName[0].name;
-
         return (
-            <MovieView
-                movie={selectedMovie}
-                onBackClick={() => {
-                    setSelectedMovie(null);
-                }}
-            />
+            <MovieView movie={selectedMovie}
+                onBackClick={() => setSelectedMovie(null)} />
         );
-    }
+    };
 
     if (movies.length === 0) {
-        return <div>The list is empty!</div>;
+        return <div>The list is empty</div>;
     }
+
     return (
         <div>
             {movies.map((movie) => (
-                <MovieCard
-                    key={movie.id}
-                    movie={movie}
+                <MovieCard key={movie.id} movie={movie}
                     onMovieClick={(newSelectedMovie) => {
                         setSelectedMovie(newSelectedMovie);
                     }}
