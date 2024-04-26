@@ -21,8 +21,12 @@ export const MainView = () => {
         })
             .then((response) => response.json())
             .then((data) => {
+<<<<<<< Updated upstream
                 console.log("Movies data: ", movie);
                 const moviesFromApi = data.map((movie) => {
+=======
+                const moviesFromApi = data.map((data) => {
+>>>>>>> Stashed changes
                     return {
                         id: movie._id,
                         title: movie.Title,
@@ -49,6 +53,7 @@ export const MainView = () => {
     }
 
     if (selectedMovie) {
+<<<<<<< Updated upstream
         // console.log(selectedMovie);
         return (
             <MovieView movie={selectedMovie}
@@ -56,6 +61,14 @@ export const MainView = () => {
         );
     };
 
+=======
+
+        // console.log(selectedMovie);
+        return (
+            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        );
+    }
+>>>>>>> Stashed changes
     if (movies.length === 0) {
         return <div>The list is empty</div>;
     }
