@@ -12,10 +12,12 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
-    if (!token) {
-        return;
-    }
+
     useEffect(() => {
+        if (!token) {
+            return;
+        }
+
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
         })
