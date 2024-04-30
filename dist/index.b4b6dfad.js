@@ -28427,7 +28427,7 @@ parcelHelpers.export(exports, "LoginView", ()=>LoginView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap"); // Add this import
+var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
 const LoginView = ({ onLoggedIn })=>{
     _s();
