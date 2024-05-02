@@ -29,14 +29,18 @@ export const SignupView = () => {
             } else {
                 alert("Signup failed");
             }
+        }).catch((error) => {
+            console.error("Signup error:", error);
+            alert("Something went wrong. Please try again later.");
         });
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <label htmlFor="username">
                 Username:
                 <input
+                    id="username"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -44,27 +48,30 @@ export const SignupView = () => {
                     minLength="3"
                 />
             </label>
-            <label>
+            <label htmlFor="password">
                 Password:
                 <input
+                    id="password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
             </label>
-            <label>
+            <label htmlFor="email">
                 Email:
                 <input
+                    id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
             </label>
-            <label>
+            <label htmlFor="birthday">
                 Birthday:
                 <input
+                    id="birthday"
                     type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
