@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
