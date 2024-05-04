@@ -77,7 +77,8 @@ export const SignupView = () => {
                     required
                 />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            {/* Apply inline style to the button */}
+            <Button variant="primary" type="submit" style={{ backgroundColor: "#40E0D0" }}>
                 Submit
             </Button>
         </Form>
