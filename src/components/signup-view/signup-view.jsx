@@ -45,8 +45,9 @@ export const SignupView = () => {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required
                     minLength="3"
+                    className="mb-4"
+                    required
                 />
             </Form.Group>
 
@@ -56,6 +57,7 @@ export const SignupView = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className="mb-4"
                     required
                 />
             </Form.Group>
@@ -65,6 +67,7 @@ export const SignupView = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className="mb-4"
                     required
                 />
             </Form.Group>
@@ -74,6 +77,7 @@ export const SignupView = () => {
                     type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
+                    className="mb-4"
                     required
                 />
             </Form.Group>
