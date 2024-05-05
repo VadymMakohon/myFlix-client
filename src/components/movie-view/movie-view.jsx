@@ -1,15 +1,20 @@
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import "./movie-view.scss";
-import PropTypes from "prop-types";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
+    const { movieId } = useParams();
+
+    const movie = movies.find((m) => m.id === movieId);
+
     return (
         <div>
             <div>
-                <img height={300} src={movie.image} />
+                <img src={movie.image} style={{ height: 'auto' }} className="w-100" alt="Movie Poster" />
             </div>
             <div>
-                <span>Title: </span>
-                <span>{movie.title}</span>
+                <span style={{ fontWeight: 'bold' }}>Title: </span>
+                <span style={{ fontWeight: 'bold' }}>{movie.title}</span>
             </div>
             <div>
                 <span>Description: </span>
@@ -23,23 +28,25 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>Director: </span>
                 <span>{movie.director}</span>
             </div>
-            <button onClick={onBackClick} className="back-button"
-                style={{ cursor: "pointer" }}
-            >
-                Back
-            </button>
+            <div>
+                <span>Featured: </span>
+                <span>{movie.featured ? "True" : "False"}</span>
+            </div>
+            <Link to={`/`}>
+                <button className="back-button" >Back</button>
+            </Link>
         </div>
     );
 };
 
-MovieView.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        featured: PropTypes.bool
-    }).isRequired,
-    onBackClick: PropTypes.func.isRequired
-};
+// MovieView.propTypes = {
+//     movie: PropTypes.shape({
+//         title: PropTypes.string.isRequired,
+//         image: PropTypes.string.isRequired,
+//         description: PropTypes.string.isRequired,
+//         genre: PropTypes.string.isRequired,
+//         director: PropTypes.string.isRequired,
+//         featured: PropTypes.bool
+//     }).isRequired,
+//     onBackClick: PropTypes.func.isRequired
+// };

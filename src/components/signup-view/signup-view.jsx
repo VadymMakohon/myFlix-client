@@ -81,6 +81,7 @@ export const SignupView = () => {
             <Button variant="primary" type="submit" style={{ backgroundColor: "#40E0D0" }}>
                 Submit
             </Button>
+
         </Form>
     );
 };
