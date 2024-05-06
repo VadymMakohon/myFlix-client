@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { UserInfo } from "./user-info";
 import { Button, Card, Container } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
