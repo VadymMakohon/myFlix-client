@@ -1,8 +1,7 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import "./movie-view.scss";
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ movies }) => {
     const { movieId } = useParams();
 
     const movie = movies.find((m) => m.id === movieId);
@@ -38,15 +37,3 @@ export const MovieView = ({ movie }) => {
         </div>
     );
 };
-
-// MovieView.propTypes = {
-//     movie: PropTypes.shape({
-//         title: PropTypes.string.isRequired,
-//         image: PropTypes.string.isRequired,
-//         description: PropTypes.string.isRequired,
-//         genre: PropTypes.string.isRequired,
-//         director: PropTypes.string.isRequired,
-//         featured: PropTypes.bool
-//     }).isRequired,
-//     onBackClick: PropTypes.func.isRequired
-// };

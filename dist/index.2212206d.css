@@ -13190,6 +13190,10 @@ textarea.form-control-lg {
   }
 }
 
+.link-card {
+  text-decoration: none;
+}
+
 .back-button {
   color: #f5f5f5;
   background-color: #1e90ff;
