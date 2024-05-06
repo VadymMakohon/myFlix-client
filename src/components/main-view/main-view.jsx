@@ -28,14 +28,14 @@ export const MainView = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log("Movies data: ", data);
-                const moviesFromApi = movie.map((movie) => {
+                const moviesFromApi = data.map((data) => {
                     return {
-                        id: movie._id,
-                        title: movie.Title,
-                        genre: movie.Genre.Name,
-                        description: movie.Description,
-                        director: movie.Director.Name,
-                        image: movie.ImagePath,
+                        id: data._id,
+                        title: data.title,
+                        image: data.imageUrl,
+                        description: data.description,
+                        genre: data.genre.name,
+                        director: data.director.name,
                         featured: data.featured,
                     };
                 });

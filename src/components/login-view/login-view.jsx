@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -49,6 +48,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
+                    className="mb-4"
                 />
             </Form.Group>
             <br />
@@ -60,14 +60,12 @@ export const LoginView = ({ onLoggedIn }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="mb-4"
                 />
             </Form.Group>
-            <br />
-            <Button type="submit">Login</Button>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
         </Form>
     );
-};
-
-LoginView.propTypes = {
-    onLoggedIn: PropTypes.func.isRequired
 };

@@ -104,7 +104,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                         username: resultUser.username,
                         password: resultUser.password,
                         email: resultUser.email,
-                        BirthDate: resultUser.birthDate,
+                        birthDate: resultUser.birthDate,
                         favoriteMovies: resultUser.favoriteMovies
                     };
                 });
