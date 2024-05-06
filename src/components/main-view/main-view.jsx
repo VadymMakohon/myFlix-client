@@ -7,12 +7,12 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-    const [selectedMovie, setSelectedMovie] = useState(null);
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
@@ -40,9 +40,11 @@ export const MainView = () => {
                         genre: movie.Genre.Name,
                         description: movie.Description,
                         director: movie.Director.Name,
-                        image: movie.ImagePath
+                        image: movie.ImagePath,
+                        featured: data.featured,
                     };
                 });
+
                 setMovies(moviesFromApi);
             })
             .catch((error) => {
@@ -53,12 +55,14 @@ export const MainView = () => {
 
     return (
         <BrowserRouter>
-            <NavigationBar user={user}
+            <NavigationBar
+                user={user}
                 onLoggedOut={() => {
                     setUser(null);
-                    setToken(null)
-                    localStorage.clear()
-                }} />
+                    setToken(null);
+                    localStorage.clear();
+                }}
+            />
             <Row className="justify-content-md-center">
                 <Routes>
                     <Route
@@ -116,11 +120,32 @@ export const MainView = () => {
                                 ) : (
                                     <>
                                         {movies.map((movie) => (
-                                            <Col className="mb-4" key={movie.id} md={3}>
-                                                <MovieCard movie={movie} />
+                                            <Col className="mb-5" key={movie.id} md={3} sm={12}>
+                                                <MovieCard
+                                                    movie={movie}
+                                                    isFavorite={user.favoriteMovies.includes(movie.title)}
+                                                />
                                             </Col>
                                         ))}
                                     </>
+                                )}
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <>
+                                {!user ? (
+                                    <Navigate to="/login" replace />
+                                ) : (
+                                    <Col md={8}>
+                                        <ProfileView
+                                            localUser={user}
+                                            movies={movies}
+                                            token={token}
+                                        />
+                                    </Col>
                                 )}
                             </>
                         }
@@ -129,4 +154,4 @@ export const MainView = () => {
             </Row>
         </BrowserRouter>
     );
-}
+} 
