@@ -1,45 +1,42 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const handleSubmit = (event) => {
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const data = {
-            username: username,
-            password: password
-        };
-
-
-        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then((response) => response.json())
-            .then((data) => {
-                console.log("Login response: ", data);
-                if (data.user) {
-                    localStorage.setItem("user", JSON.stringify(data.user));
-                    localStorage.setItem("token", data.token);
-                    onLoggedIn(data.user, data.token);
-                } else {
-                    alert("No such user");
-                }
-            })
-            .catch((e) => {
-                alert("Something went wrong");
+        try {
+            const response = await fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
             });
+
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("token", data.token);
+                onLoggedIn(data.user, data.token);
+            } else {
+                setError("Invalid username or password");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            setError("Something went wrong. Please try again later.");
+        }
     };
 
     return (
         <Form onSubmit={handleSubmit}>
-            <h1> Login to your account </h1>
+            <h1>Login to your account</h1>
+            {error && <div className="error">{error}</div>}
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
@@ -51,15 +48,14 @@ export const LoginView = ({ onLoggedIn }) => {
                     className="mb-4"
                 />
             </Form.Group>
-            <br />
             <Form.Group controlId="formPassword">
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="mb-4"
                     required
+                    className="mb-4"
                 />
             </Form.Group>
             <Button variant="primary" type="submit">
