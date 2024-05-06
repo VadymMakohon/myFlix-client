@@ -42281,17 +42281,17 @@ const ProfileView = ({ localUser, movies, token })=>{
     const [email, setEmail] = (0, _react.useState)(storedUser.email);
     const [password, setPassword] = (0, _react.useState)(storedUser.password);
     const [birthDate, setBirthdate] = (0, _react.useState)(storedUser.birthDate);
-    const [user, setUser] = (0, _react.useState)();
+    const [user, setUser] = (0, _react.useState)({});
     const favoriteMovies = user === undefined ? [] : movies.filter((m)=>user.favoriteMovies.includes(m.title));
     const formData = {
-        username: username,
-        email: email,
-        birthDate: birthDate,
-        password: password
+        Username: username,
+        Email: email,
+        BirthDate: birthDate,
+        Password: password
     };
     const handleSubmit = (event)=>{
         event.preventDefault(event);
-        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}", {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}`, {
             method: "PUT",
             body: JSON.stringify(formData),
             headers: {
@@ -42327,11 +42327,13 @@ const ProfileView = ({ localUser, movies, token })=>{
                 break;
             case "date":
                 setBirthdate(e.target.value);
+                break; // Add break statement
             default:
+                break; // Ensure default case has a break statement
         }
     };
     const handleDeleteAccount = ()=>{
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${id}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -42341,7 +42343,7 @@ const ProfileView = ({ localUser, movies, token })=>{
             if (response.ok) {
                 alert("Account deleted successfully.");
                 localStorage.clear();
-                window.location.reload();
+            // Redirect the user or update state instead of reloading the page
             } else alert("Something went wrong.");
         });
     };
@@ -42387,7 +42389,7 @@ const ProfileView = ({ localUser, movies, token })=>{
                                     children: "My Profile  "
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 127,
+                                    lineNumber: 129,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -42396,23 +42398,23 @@ const ProfileView = ({ localUser, movies, token })=>{
                                         email: user.email
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 130,
+                                        lineNumber: 132,
                                         columnNumber: 42
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 128,
+                                    lineNumber: 130,
                                     columnNumber: 25
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 126,
+                            lineNumber: 128,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 125,
+                        lineNumber: 127,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
@@ -42425,23 +42427,23 @@ const ProfileView = ({ localUser, movies, token })=>{
                                 handleDeleteAccount: handleDeleteAccount
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 137,
+                                lineNumber: 139,
                                 columnNumber: 25
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 136,
+                            lineNumber: 138,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 135,
+                        lineNumber: 137,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 124,
+                lineNumber: 126,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -42454,27 +42456,27 @@ const ProfileView = ({ localUser, movies, token })=>{
                         favouriteMovies: favoriteMovies
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 149,
+                        lineNumber: 151,
                         columnNumber: 45
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 147,
+                    lineNumber: 149,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 146,
+                lineNumber: 148,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 123,
+        lineNumber: 125,
         columnNumber: 9
     }, undefined);
 };
-_s(ProfileView, "Ax5MymCIWzlsf9LESKqu0IErh2w=");
+_s(ProfileView, "kVjXHemkLIvjsdxMRZ+A4fJat0Q=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");

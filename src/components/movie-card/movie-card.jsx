@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./movie-card.scss"
+import "./movie-card.scss";
 
 export const MovieCard = ({ movie, isFavorite }) => {
     const storedToken = localStorage.getItem("token");
@@ -13,78 +13,76 @@ export const MovieCard = ({ movie, isFavorite }) => {
     const [addTitle, setAddTitle] = useState("");
     const [delTitle, setDelTitle] = useState("");
 
-    //ADD MOVIES TO FAVORITE
-    useEffect(() => {
-        const addToFavorites = () => {
-            fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.UserName}/movies/${encodeURIComponent(movie.title)}",
-                {
-                    method: 'POST',
-                    // body: JSON.stringify(favoriteMoviesData),
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                },
-            )
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Failed to add movie to favorites.");
-                    }
-                    alert("Movie added to favorites successfully!");
-                    window.location.reload();
-                    return response.json()
-                })
-                .then((user) => {
-                    if (user) {
-                        localStorage.setItem('user', JSON.stringify(user));
-                        setUser(user)
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        };
-        const removeFromFavorites = () => {
-            fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.UserName}/movies/${encodeURIComponent(movie.title)}",
-                {
-                    method: 'DELETE',
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                },
-            )
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Failed to remove movie from favorites.");
-                    }
-                    alert("Movie removed from favorites successfully!");
-                    window.location.reload();
-                    return response.json()
-                })
-                .then((user) => {
-                    if (user) {
-                        localStorage.setItem('user', JSON.stringify(user));
-                        setUser(user)
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        };
-        if (addTitle) {
-            addToFavorites();
-        };
-        if (delTitle) {
-            removeFromFavorites();
-        }
-    }, [addTitle, delTitle, token]);
+    // ADD MOVIE TO FAVORITES
+    const addToFavorites = () => {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.title)}`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to add movie to favorites.");
+                }
+                alert("Movie added to favorites successfully!");
+                window.location.reload();
+                return response.json();
+            })
+            .then((user) => {
+                if (user) {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    setUser(user);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    // REMOVE MOVIE FROM FAVORITES
+    const removeFromFavorites = () => {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.title)}`, {
+            method: 'DELETE',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to remove movie from favorites.");
+                }
+                alert("Movie removed from favorites successfully!");
+                window.location.reload();
+                return response.json();
+            })
+            .then((user) => {
+                if (user) {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    setUser(user);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
     const handleAddToFavorites = () => {
-        setAddTitle(movie.title)
+        setAddTitle(movie.title);
     };
     const handleRemoveFromFavorites = () => {
-        setDelTitle(movie.title)
+        setDelTitle(movie.title);
     };
+
+    if (addTitle) {
+        addToFavorites();
+    }
+    if (delTitle) {
+        removeFromFavorites();
+    }
+
     return (
         <>
             <Link className="link-card" to={`/movies/${encodeURIComponent(movie.id)}`}>
@@ -105,7 +103,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
             </Card>
         </>
     );
-}
+};
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
