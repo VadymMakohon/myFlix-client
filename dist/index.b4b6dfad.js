@@ -42765,24 +42765,22 @@ const FavouriteMovies = ({ user, favouriteMovies })=>{
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         className: "mb-5",
                         md: 4,
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                                to: `/movies/${movie.title}`
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/favourite-movies.jsx",
-                                lineNumber: 17,
-                                columnNumber: 29
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/movies/${movie.title}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                 movie: movie,
                                 isFavorite: user.favoriteMovies.includes(movie.title)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favourite-movies.jsx",
                                 lineNumber: 18,
-                                columnNumber: 29
+                                columnNumber: 33
                             }, undefined)
-                        ]
-                    }, movie.id, true, {
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/favourite-movies.jsx",
+                            lineNumber: 17,
+                            columnNumber: 29
+                        }, undefined)
+                    }, movie.id, false, {
                         fileName: "src/components/profile-view/favourite-movies.jsx",
                         lineNumber: 16,
                         columnNumber: 25

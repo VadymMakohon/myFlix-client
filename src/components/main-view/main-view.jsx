@@ -24,7 +24,12 @@ export const MainView = () => {
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch movies');
+                }
+                return response.json();
+            })
             .then((data) => {
                 const moviesFromApi = data.map((data) => ({
                     id: data._id,
@@ -37,7 +42,11 @@ export const MainView = () => {
                 }));
                 setMovies(moviesFromApi);
             })
-            .catch((error) => console.error('Error fetching movies:', error));
+            .catch((error) => {
+                console.error('Error fetching movies:', error);
+                // Provide feedback to the user
+                // For example, show a message or redirect to an error page
+            });
     }, [token]);
 
     return (
