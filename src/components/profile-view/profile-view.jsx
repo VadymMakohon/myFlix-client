@@ -97,10 +97,10 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 const usersFromApi = data.map((resultUser) => {
                     return {
                         id: resultUser._id,
-                        username: resultUser.username,
-                        password: resultUser.password,
-                        email: resultUser.email,
-                        birthDate: resultUser.birthDate,
+                        Username: resultUser.username,
+                        Password: resultUser.password,
+                        Email: resultUser.email,
+                        BirthDate: resultUser.birthDate,
                         favoriteMovies: resultUser.favoriteMovies
                     };
                 });
