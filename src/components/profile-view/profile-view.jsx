@@ -8,6 +8,7 @@ import { UpdateUser } from "./update-user";
 
 export const ProfileView = ({ localUser, movies, token }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
+
     const [username, setUsername] = useState(storedUser.username);
     const [email, setEmail] = useState(storedUser.email);
     const [password, setPassword] = useState(storedUser.password);
@@ -67,7 +68,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         }
     }
     const handleDeleteAccount = () => {
-        fetch(`https://mj-movies-flix-036de76605bb.herokuapp.com/users/${storedUser.username}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${storedUser.username}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
