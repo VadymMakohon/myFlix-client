@@ -3,7 +3,7 @@ import { UserInfo } from "./user-info";
 import { Button, Card, Container } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavoriteMovies } from "./favorite-movies";
+import { FavoriteMovies } from "./favourite-movies";
 import { UpdateUser } from "./update-user";
 
 export const ProfileView = ({ localUser, movies, token }) => {
@@ -17,10 +17,10 @@ export const ProfileView = ({ localUser, movies, token }) => {
     const favoriteMovies = user === undefined ? [] : movies.filter(m => user.favoriteMovies.includes(m.title))
 
     const formData = {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthdate: birthday
+        username: username,
+        email: email,
+        birthDate: birthDate,
+        password: password
     };
     const handleSubmit = (event) => {
         event.preventDefault(event);
@@ -101,9 +101,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 const usersFromApi = data.map((resultUser) => {
                     return {
                         id: resultUser._id,
-                        Username: resultUser.username,
-                        Password: resultUser.password,
-                        Email: resultUser.email,
+                        username: resultUser.username,
+                        password: resultUser.password,
+                        email: resultUser.email,
                         BirthDate: resultUser.birthDate,
                         favoriteMovies: resultUser.favoriteMovies
                     };
