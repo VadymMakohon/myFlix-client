@@ -1,29 +1,29 @@
-import React from 'react'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { MovieCard } from '../movie-card/movie-card'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { MovieCard } from '../movie-card/movie-card';
+import { Link } from 'react-router-dom';
 
 export const FavouriteMovies = ({ user, favouriteMovies }) => {
     return (
         <Row>
-            <Col md={12} >
+            <Col md={12}>
                 <h3>My Movies</h3>
             </Col>
             <Row>
                 {favouriteMovies.map((movie) => {
                     return (
                         <Col className="mb-5" key={movie.id} md={4}>
-                            <Link to={`/movies/${movie.title}`} />
-                            <MovieCard
-                                movie={movie}
-                                isFavorite={user.favoriteMovies.includes(movie.title)}
-                            />
+                            <Link to={`/movies/${movie.title}`}>
+                                <MovieCard
+                                    movie={movie}
+                                    isFavorite={user.favoriteMovies.includes(movie.title)}
+                                />
+                            </Link>
                         </Col>
                     );
                 })}
             </Row>
         </Row>
-
-    )
-}
+    );
+};

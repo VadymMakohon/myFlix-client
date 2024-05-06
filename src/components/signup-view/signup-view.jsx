@@ -29,7 +29,10 @@ export const SignupView = () => {
                 alert("Signup successful");
                 window.location.reload();
             } else {
-                alert("Signup failed");
+                response.json().then((errorData) => {
+                    console.error("Signup failed:", errorData);
+                    alert("Signup failed: " + errorData.message); // Or whatever property contains the error message
+                });
             }
         }).catch((error) => {
             console.error("Signup error:", error);
@@ -85,7 +88,6 @@ export const SignupView = () => {
             <Button variant="primary" type="submit" style={{ backgroundColor: "#40E0D0" }}>
                 Submit
             </Button>
-
         </Form>
     );
 };
