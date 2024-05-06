@@ -36,6 +36,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 if (response.ok) {
                     alert("Update successful");
                     window.location.reload();
+
                     return response.json()
                 }
                 alert("Update failed");
@@ -50,6 +51,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 console.error(error);
             });
     };
+
     const handleUpdate = (e) => {
         switch (e.target.type) {
             case "text":
@@ -67,7 +69,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         }
     }
     const handleDeleteAccount = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${storedUser.username}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -83,6 +85,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
             }
         });
     };
+
     useEffect(() => {
         if (!token) {
             return;
@@ -114,6 +117,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 console.error(error);
             });
     }, [token]);
+
     return (
         <Container className="mx-1">
             <Row>
