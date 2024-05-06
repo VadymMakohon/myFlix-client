@@ -41829,8 +41829,6 @@ parcelHelpers.export(exports, "LoginView", ()=>LoginView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _form = require("react-bootstrap/Form");
@@ -41843,8 +41841,8 @@ const LoginView = ({ onLoggedIn })=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            Username: username,
-            Password: password
+            username: username,
+            password: password
         };
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/login", {
             method: "POST",
@@ -41870,7 +41868,7 @@ const LoginView = ({ onLoggedIn })=>{
                 children: " Login to your account "
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 43,
+                lineNumber: 42,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -41880,7 +41878,7 @@ const LoginView = ({ onLoggedIn })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 45,
+                        lineNumber: 44,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -41888,16 +41886,17 @@ const LoginView = ({ onLoggedIn })=>{
                         minLength: 5,
                         value: username,
                         onChange: (e)=>setUsername(e.target.value),
-                        required: true
+                        required: true,
+                        className: "mb-4"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 46,
+                        lineNumber: 45,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 44,
+                lineNumber: 43,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
@@ -41920,7 +41919,8 @@ const LoginView = ({ onLoggedIn })=>{
                         minLength: 8,
                         value: password,
                         onChange: (e)=>setPassword(e.target.value),
-                        required: true
+                        required: true,
+                        className: "mb-4"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 57,
@@ -41932,14 +41932,10 @@ const LoginView = ({ onLoggedIn })=>{
                 lineNumber: 55,
                 columnNumber: 13
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 65,
-                columnNumber: 13
-            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                variant: "primary",
                 type: "submit",
-                children: "Login"
+                children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
                 lineNumber: 66,
@@ -41948,15 +41944,12 @@ const LoginView = ({ onLoggedIn })=>{
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 42,
+        lineNumber: 41,
         columnNumber: 9
     }, undefined);
 };
 _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
-LoginView.propTypes = {
-    onLoggedIn: (0, _propTypesDefault.default).func.isRequired
-};
 var _c;
 $RefreshReg$(_c, "LoginView");
 
@@ -41965,7 +41958,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","prop-types":"7wKI2"}],"4OGiN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42296,10 +42289,10 @@ const ProfileView = ({ localUser, movies, token })=>{
     const [user, setUser] = (0, _react.useState)();
     const favoriteMovies = user === undefined ? [] : movies.filter((m)=>user.favoriteMovies.includes(m.title));
     const formData = {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthdate: birthday
+        username: username,
+        email: email,
+        birthDate: birthDate,
+        password: password
     };
     const handleSubmit = (event)=>{
         event.preventDefault(event);
@@ -42368,10 +42361,10 @@ const ProfileView = ({ localUser, movies, token })=>{
             const usersFromApi = data.map((resultUser)=>{
                 return {
                     id: resultUser._id,
-                    Username: resultUser.username,
-                    Password: resultUser.password,
-                    Email: resultUser.email,
-                    BirthDate: resultUser.birthDate,
+                    username: resultUser.username,
+                    password: resultUser.password,
+                    email: resultUser.email,
+                    birthDate: resultUser.birthDate,
                     favoriteMovies: resultUser.favoriteMovies
                 };
             });
@@ -42461,13 +42454,13 @@ const ProfileView = ({ localUser, movies, token })=>{
                     className: "mb-5",
                     xs: 12,
                     md: 12,
-                    children: favoriteMovies && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FavoriteMovies, {
+                    children: favouriteMovies && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favouriteMovies.FavouriteMovies), {
                         user: user,
-                        favoriteMovies: favoriteMovies
+                        favouriteMovies: favoriteMovies
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 149,
-                        columnNumber: 44
+                        columnNumber: 45
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
@@ -42755,7 +42748,7 @@ var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
 var _movieCard = require("../movie-card/movie-card");
 var _reactRouterDom = require("react-router-dom");
-const FavouriteMovies = ({ user, favoriteMovies })=>{
+const FavouriteMovies = ({ user, favouriteMovies })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {

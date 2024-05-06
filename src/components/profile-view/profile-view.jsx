@@ -3,7 +3,7 @@ import { UserInfo } from "./user-info";
 import { Button, Card, Container } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavoriteMovies } from "./favourite-movies";
+import { FavouriteMovies } from "./favourite-movies";
 import { UpdateUser } from "./update-user";
 
 export const ProfileView = ({ localUser, movies, token }) => {
@@ -146,7 +146,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
             <Row>
                 <Col className="mb-5" xs={12} md={12}>
                     {
-                        favoriteMovies && (<FavoriteMovies user={user} favoriteMovies={favoriteMovies} />)
+                        favouriteMovies && (<FavouriteMovies user={user} favouriteMovies={favoriteMovies} />)
                     }
                 </Col>
             </Row>
