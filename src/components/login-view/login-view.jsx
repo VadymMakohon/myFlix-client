@@ -44,10 +44,10 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type="text"
-                    minLength={5}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
+                    minLength={5}
                     className="mb-4"
                 />
             </Form.Group>
@@ -56,11 +56,10 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
-                    minLength={8}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                     className="mb-4"
+                    required
                 />
             </Form.Group>
             <Button variant="primary" type="submit">
