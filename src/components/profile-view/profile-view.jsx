@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { UserInfo } from './user-info'
+import { UserInfo } from "./user-info";
 import { Button, Card, Container } from 'react-bootstrap';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { FavouriteMovies } from './favourite-movies';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { FavouriteMovies } from "./favorite-movies";
 import { UpdateUser } from "./update-user";
 
 export const ProfileView = ({ localUser, movies, token }) => {
