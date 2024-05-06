@@ -13,26 +13,25 @@ export const ProfileView = ({ localUser, movies, token }) => {
     const [email, setEmail] = useState(storedUser.email);
     const [password, setPassword] = useState(storedUser.password);
     const [birthDate, setBirthdate] = useState(storedUser.birthDate);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
     const favoriteMovies = user === undefined ? [] : movies.filter(m => user.favoriteMovies.includes(m.title))
 
     const formData = {
-        username: username,
-        email: email,
-        birthDate: birthDate,
-        password: password
+        Username: username,
+        Email: email,
+        BirthDate: birthDate,
+        Password: password
     };
     const handleSubmit = (event) => {
         event.preventDefault(event);
-        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}", {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}`, {
             method: "PUT",
             body: JSON.stringify(formData),
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             }
-        }
-        )
+        })
             .then((response) => {
                 if (response.ok) {
                     alert("Update successful");
@@ -66,11 +65,14 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 break;
             case "date":
                 setBirthdate(e.target.value);
+                break; // Add break statement
             default:
+                break; // Ensure default case has a break statement
         }
-    }
+    };
+
     const handleDeleteAccount = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${id}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.id}`, { // Use user.id
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -80,7 +82,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
             if (response.ok) {
                 alert("Account deleted successfully.");
                 localStorage.clear();
-                window.location.reload();
+                // Redirect the user or update state instead of reloading the page
             } else {
                 alert("Something went wrong.");
             }
