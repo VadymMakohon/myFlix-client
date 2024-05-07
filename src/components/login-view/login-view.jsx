@@ -13,9 +13,7 @@ export const LoginView = ({ onLoggedIn }) => {
         try {
             const response = await fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password })
             });
 
