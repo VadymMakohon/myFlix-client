@@ -68,7 +68,7 @@ export const MainView = () => {
                         }
                     />
                     <Route
-                        path="/login"
+                        path='/login'
                         element={
                             user ? <Navigate to="/" /> : <Col md={5}><LoginView onLoggedIn={(user) => setUser(user)} /></Col>
                         }
@@ -76,13 +76,13 @@ export const MainView = () => {
                     <Route
                         path="/movies/:movieId"
                         element={
-                            !user ? <Navigate to="/login" replace /> : movies.length === 0 ? <Col>The list is empty!</Col> : <Col md={8}><MovieView movies={movies} /></Col>
+                            !user ? <Navigate to='/login' replace /> : movies.length === 0 ? <Col>The list is empty!</Col> : <Col md={8}><MovieView movies={movies} /></Col>
                         }
                     />
                     <Route
                         path="/"
                         element={
-                            !user ? <Navigate to="/login" replace /> : movies.length === 0 ? <Col>The list is empty!</Col> : movies.map((movie) => (
+                            !user ? <Navigate to='/login' replace /> : movies.length === 0 ? <Col>The list is empty!</Col> : movies.map((movie) => (
                                 <Col className="mb-5" key={movie.id} md={3} sm={12}>
                                     <Link to={`/movies/${movie.id}`}>
                                         <MovieCard
@@ -97,7 +97,7 @@ export const MainView = () => {
                     <Route
                         path="/profile"
                         element={
-                            !user ? <Navigate to="/login" replace /> : <Col md={8}><ProfileView localUser={user} movies={movies} token={token} /></Col>
+                            !user ? <Navigate to='/login' replace /> : <Col md={8}><ProfileView localUser={user} movies={movies} token={token} /></Col>
                         }
                     />
                 </Routes>

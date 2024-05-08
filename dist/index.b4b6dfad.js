@@ -42290,10 +42290,10 @@ const ProfileView = ({ localUser, movies, token })=>{
     const [user, setUser] = (0, _react.useState)({});
     const favoriteMovies = user === undefined ? [] : movies.filter((m)=>user.favoriteMovies.includes(m.title));
     const formData = {
-        Username: username,
-        Email: email,
-        BirthDate: birthDate,
-        Password: password
+        username: username,
+        email: email,
+        birthDate: birthDate,
+        password: password
     };
     const handleSubmit = (event)=>{
         event.preventDefault(event);
