@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -26,7 +26,7 @@ export const MainView = () => {
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Failed to fetch movies');
+                    throw new Error("Failed to fetch movies");
                 }
                 return response.json();
             })
@@ -43,7 +43,7 @@ export const MainView = () => {
                 setMovies(moviesFromApi);
             })
             .catch((error) => {
-                console.error('Error fetching movies:', error);
+                console.error("Error fetching movies:", error);
                 // Provide feedback to the user
                 // For example, show a message or redirect to an error page
             });
@@ -64,40 +64,72 @@ export const MainView = () => {
                     <Route
                         path="/signup"
                         element={
-                            user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>
+                            user ? (
+                                <Navigate to="/" />
+                            ) : (
+                                <Col md={5}>
+                                    <SignupView />
+                                </Col>
+                            )
                         }
                     />
                     <Route
-                        path='/login'
+                        path="/login"
                         element={
-                            user ? <Navigate to="/" /> : <Col md={5}><LoginView onLoggedIn={(user) => setUser(user)} /></Col>
+                            user ? (
+                                <Navigate to="/" />
+                            ) : (
+                                <Col md={5}>
+                                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                                </Col>
+                            )
                         }
                     />
                     <Route
                         path="/movies/:movieId"
                         element={
-                            !user ? <Navigate to='/login' replace /> : movies.length === 0 ? <Col>The list is empty!</Col> : <Col md={8}><MovieView movies={movies} /></Col>
+                            !user ? (
+                                <Navigate to="/login" replace />
+                            ) : movies.length === 0 ? (
+                                <Col>The list is empty!</Col>
+                            ) : (
+                                <Col md={8}>
+                                    <MovieView movies={movies} />
+                                </Col>
+                            )
                         }
                     />
                     <Route
                         path="/"
                         element={
-                            !user ? <Navigate to='/login' replace /> : movies.length === 0 ? <Col>The list is empty!</Col> : movies.map((movie) => (
-                                <Col className="mb-5" key={movie.id} md={3} sm={12}>
-                                    <Link to={`/movies/${movie.id}`}>
-                                        <MovieCard
-                                            movie={movie}
-                                            isFavorite={user.favoriteMovies.includes(movie.title)}
-                                        />
-                                    </Link>
-                                </Col>
-                            ))
+                            !user ? (
+                                <Navigate to="/login" replace />
+                            ) : movies.length === 0 ? (
+                                <Col>The list is empty!</Col>
+                            ) : (
+                                movies.map((movie) => (
+                                    <Col className="mb-5" key={movie.id} md={3} sm={12}>
+                                        <Link to={`/movies/${movie.id}`}>
+                                            <MovieCard
+                                                movie={movie}
+                                                isFavorite={user.favoriteMovies.includes(movie.title)}
+                                            />
+                                        </Link>
+                                    </Col>
+                                ))
+                            )
                         }
                     />
                     <Route
                         path="/profile"
                         element={
-                            !user ? <Navigate to='/login' replace /> : <Col md={8}><ProfileView localUser={user} movies={movies} token={token} /></Col>
+                            !user ? (
+                                <Navigate to="/login" replace />
+                            ) : (
+                                <Col md={8}>
+                                    <ProfileView localUser={user} movies={movies} token={token} />
+                                </Col>
+                            )
                         }
                     />
                 </Routes>
