@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export const UserInfo = ({ email, name }) => {
     return (
@@ -6,5 +6,5 @@ export const UserInfo = ({ email, name }) => {
             <p>username: {name} </p>
             <p>email: {email} </p>
         </div>
-    )
-}
+    );
+};
