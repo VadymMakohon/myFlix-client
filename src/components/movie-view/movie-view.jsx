@@ -9,11 +9,15 @@ export const MovieView = ({ movies }) => {
     return (
         <div>
             <div>
-                <img src={movie.image} className="img-fluid  justify-content-md-center" alt="Movie Poster" />
+                <img
+                    src={movie.image}
+                    className="img-fluid  justify-content-md-center"
+                    alt="Movie Poster"
+                />
             </div>
             <div>
-                <span style={{ fontWeight: 'bold' }}>Title: </span>
-                <span style={{ fontWeight: 'bold' }}>{movie.title}</span>
+                <span style={{ fontWeight: "bold" }}>Title: </span>
+                <span style={{ fontWeight: "bold" }}>{movie.title}</span>
             </div>
             <div>
                 <span>Description: </span>
@@ -32,7 +36,7 @@ export const MovieView = ({ movies }) => {
                 <span>{movie.featured ? "True" : "False"}</span>
             </div>
             <Link to={`/`}>
-                <button className="back-button" >Back</button>
+                <button className="back-button">Back</button>
             </Link>
         </div>
     );
