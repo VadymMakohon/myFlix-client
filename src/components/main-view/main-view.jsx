@@ -33,12 +33,12 @@ export const MainView = () => {
             .then((data) => {
                 const moviesFromApi = data.map((data) => ({
                     id: data._id,
-                    title: data.title,
-                    image: data.imageUrl,
-                    description: data.description,
-                    genre: data.genre.name,
-                    director: data.director.name,
-                    featured: data.featured
+                    Title: data.title,
+                    Image: data.imageUrl,
+                    Description: data.description,
+                    Genre: data.genre.name,
+                    Director: data.director.name,
+                    Featured: data.featured
                 }));
                 setMovies(moviesFromApi);
             })
