@@ -15,7 +15,7 @@ export const SignupView = () => {
             username: username,
             password: password,
             email: email,
-            birthDate: birthday
+            birthdate: birthday
         };
 
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users", {
@@ -30,8 +30,8 @@ export const SignupView = () => {
                 window.location.reload();
             } else {
                 response.json().then((errorData) => {
-                    console.error("Signup failed:", errorData);
-                    alert("Signup failed: " + errorData.message); // Or whatever property contains the error message
+                    console.error("Signup failed:", errorData); // Log the error object to the console
+                    alert("Signup failed. Please check the console for details."); // Display a generic error message to the user
                 });
             }
         }).catch((error) => {
