@@ -41978,10 +41978,10 @@ const SignupView = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            username: username,
-            password: password,
-            email: email,
-            birthdate: birthday
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthdate: birthday
         };
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users", {
             method: "POST",
