@@ -41834,7 +41834,7 @@ const LoginView = ({ onLoggedIn })=>{
         const userName = encodeURIComponent(username);
         const userPassword = encodeURIComponent(password);
         try {
-            const response = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/login?username=${userName}&password=${userPassword}`, {
+            const response = await fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -41980,12 +41980,12 @@ const SignupView = ()=>{
     const [birthday, setBirthday] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         event.preventDefault();
-        // const data = {
-        //     Username: username,
-        //     Password: password,
-        //     Email: email,
-        //     Birthdate: birthday
-        // };
+        const data = {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthdate: birthday
+        };
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users", {
             method: "POST",
             body: JSON.stringify(data),

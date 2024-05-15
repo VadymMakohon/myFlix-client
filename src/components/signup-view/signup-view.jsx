@@ -11,12 +11,12 @@ export const SignupView = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // const data = {
-        //     Username: username,
-        //     Password: password,
-        //     Email: email,
-        //     Birthdate: birthday
-        // };
+        const data = {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthdate: birthday
+        };
 
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users", {
             method: "POST",
