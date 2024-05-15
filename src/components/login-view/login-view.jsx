@@ -10,9 +10,12 @@ export const LoginView = ({ onLoggedIn }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        const userName = encodeURIComponent(username);
+        const userPassword = encodeURIComponent(password);
+
         try {
             const response = await fetch(
-                "https://myflix-2024-e9df13718d8a.herokuapp.com/login",
+                `https://myflix-2024-e9df13718d8a.herokuapp.com/login?username=${userName}&password=${userPassword}`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -22,6 +25,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
                 localStorage.setItem("user", JSON.stringify(data.user));
                 localStorage.setItem("token", data.token);
                 onLoggedIn(data.user, data.token);
