@@ -16,7 +16,9 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.23.0",
     "react-router-dom": "^6.23.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.12.0",
