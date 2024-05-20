@@ -33,12 +33,12 @@ export const MainView = () => {
             .then((data) => {
                 const moviesFromApi = data.map((data) => ({
                     id: data._id,
-                    Title: data.title,
-                    Image: data.imageUrl,
-                    Description: data.description,
-                    Genre: data.genre.name,
-                    Director: data.director.name,
-                    Featured: data.featured
+                    Title: data.Title,
+                    Image: data.ImagePath,
+                    Description: data.Description,
+                    Genre: data.Genre,
+                    Director: data.Director,
+                    Featured: data.Featured
                 }));
                 setMovies(moviesFromApi);
             })
@@ -112,7 +112,7 @@ export const MainView = () => {
                                         <Link to={`/movies/${movie.id}`}>
                                             <MovieCard
                                                 movie={movie}
-                                                isFavorite={user.favoriteMovies.includes(movie.title)}
+                                                isFavorite={user.FavoriteMovies.includes(movie.Title)}
                                             />
                                         </Link>
                                     </Col>

@@ -41,12 +41,12 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
                 </Form.Group>
                 <Form.Group className='mb-4'>
                     <Form.Label>Birthdate:</Form.Label>
-                    <Form.Control
+                    {/* <Form.Control
                         type="date"
                         value={formData.birthDate.slice(0, 10)}
                         onChange={(e) => handleUpdate(e)}
                         required
-                    />
+                    /> */}
                 </Form.Group>
                 <Button variant="primary" type="submit" >Submit Changes</Button>
                 <Button

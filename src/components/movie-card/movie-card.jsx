@@ -70,10 +70,10 @@ export const MovieCard = ({ movie, isFavorite }) => {
     };
 
     const handleAddToFavorites = () => {
-        setAddTitle(movie.title);
+        setAddTitle(movie.Title);
     };
     const handleRemoveFromFavorites = () => {
-        setDelTitle(movie.title);
+        setDelTitle(movie.Title);
     };
 
     if (addTitle) {
@@ -85,15 +85,14 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     return (
         <>
-            <Link className="link-card" to={`/movies/${encodeURIComponent(movie.id)}`}>
-                <Card>
-                    <Card.Img variant="top" src={movie.image} />
-                    <Card.Body>
-                        <Card.Title>{movie.title}</Card.Title>
-                        <Card.Text>{movie.genre.join(", ")}</Card.Text>
-                    </Card.Body>
-                </Card>
-            </Link>
+
+            <Card>
+                <Card.Img variant="top" src={movie.Image} />
+                <Card.Body>
+                    <Card.Title>{movie.Title}</Card.Title>
+                    <Card.Text>{movie.Genre.Name}</Card.Text>
+                </Card.Body>
+            </Card>
             <Card>
                 {isFavorite ? (
                     <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove from favorites</Button>
@@ -107,12 +106,12 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        featured: PropTypes.bool,
+        Title: PropTypes.string.isRequired,
+        Image: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        // Genre: PropTypes.string.isRequired,
+        // Director: PropTypes.string.isRequired,
+        Featured: PropTypes.bool,
         id: PropTypes.string.isRequired
     }).isRequired
 };

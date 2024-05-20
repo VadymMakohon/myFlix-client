@@ -1,55 +1,73 @@
 import { useEffect, useState } from "react";
 import { UserInfo } from "./user-info";
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Card, Container, FormLabel } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FavouriteMovies } from "./favourite-movies";
 import { UpdateUser } from "./update-user";
+import Form from "react-bootstrap/Form";
 
 export const ProfileView = ({ localUser, movies, token }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
-    const [username, setUsername] = useState(storedUser.username);
+    const [username, setUsername] = useState(storedUser.Username);
     const [email, setEmail] = useState(storedUser.email);
     const [password, setPassword] = useState(storedUser.password);
     const [birthDate, setBirthdate] = useState(storedUser.birthDate);
     const [user, setUser] = useState({});
-    const favoriteMovies = user === undefined ? [] : movies.filter(m => user.favoriteMovies.includes(m.title))
+    const [userid, setUserid] = useState(storedUser._id);
+    // const favoriteMovies = user === undefined ? [] : movies.filter(m => user.FavoriteMovies(m.Title))
+    const favoriteMovies = user === undefined ? [] : []
 
-    const formData = {
-        username: username,
-        email: email,
-        birthDate: birthDate,
-        password: password
-    };
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        const formData = {
+            Username: username,
+            Email: email,
+            Password: password
+        };
+        console.log(formData)
         event.preventDefault(event);
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}`, {
-            method: "PUT",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+        try {
+            const response = await fetch(
+                `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                }
+            );
+            if (response.ok) {
+                console.log(responce)
             }
-        })
-            .then((response) => {
-                if (response.ok) {
-                    alert("Update successful");
-                    window.location.reload();
+        } catch (error) {
+            console.log(error)
+        };
+        // fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}`, {
+        //     method: "PUT",
+        //     body: JSON.stringify(formData),
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // })
+        //     .then((response) => {
+        //         if (response.ok) {
+        //             alert("Update successful");
+        //             window.location.reload();
 
-                    return response.json()
-                }
-                alert("Update failed");
-            })
-            .then((user) => {
-                if (user) {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    setUser(user)
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        //             return response.json()
+        //         }
+        //         alert("Update failed");
+        //     })
+        //     .then((user) => {
+        //         if (user) {
+        //             localStorage.setItem('user', JSON.stringify(user));
+        //             setUser(user)
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.error(error);
+        //     });
     };
 
     const handleUpdate = (e) => {
@@ -72,7 +90,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
     };
 
     const handleDeleteAccount = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.id}`, { // Use user.id
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, { // Use user.id
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -90,29 +108,26 @@ export const ProfileView = ({ localUser, movies, token }) => {
     };
 
     useEffect(() => {
+        console.log(user)
         if (!token) {
             return;
         }
 
-        fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/users", {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${userid}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("Users data: ", data);
-                const usersFromApi = data.map((resultUser) => {
-                    return {
-                        id: resultUser._id,
-                        username: resultUser.username,
-                        password: resultUser.password,
-                        email: resultUser.email,
-                        birthDate: resultUser.birthDate,
-                        favoriteMovies: resultUser.favoriteMovies
-                    };
-                });
-                setUser(usersFromApi.find((u) => u.username === localUser.username));
-                //   localStorage.setItem('user', JSON.stringify(user));
-                console.log("Profile Saved User: " + JSON.stringify(user));
+                const usersFromApi = {
+                    id: data._id,
+                    username: data.Username,
+                    password: data.Password,
+                    email: data.Email,
+                    birthDate: data.BirthDate,
+                    favoriteMovies: data.FavoriteMovies
+                };
+                setUser(usersFromApi)
+
                 //   console.log("User Result Data: " + storedUser.username );
                 //   storedUser = user;
             })
@@ -127,28 +142,53 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 <Card className="mb-5">
                     <Card.Body>
                         <Card.Title>My Profile  </Card.Title>
-                        <Card.Text>
-                            {
-                                user && (<UserInfo name={user.username} email={user.email} />)
-                            }
-                        </Card.Text>
+                        {
+                            user && (<UserInfo name={user.username} email={user.email} />)
+                        }
                     </Card.Body>
                 </Card>
                 <Card className="mb-5">
                     <Card.Body>
-                        <UpdateUser
+                        {/* <UpdateUser
                             formData={formData}
                             handleUpdate={handleUpdate}
                             handleSubmit={handleSubmit}
                             handleDeleteAccount={handleDeleteAccount}
-                        />
+                        /> */}
+                        <Form onSubmit={handleSubmit}>
+                            <h1>Edit profile info</h1>
+
+                            <Form.Group controlId="formPassword">
+                                <Form.Label>Password:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    className="mb-4"
+                                />
+                            </Form.Group>
+                            <Form.Group controlId="formPassword">
+                                <Form.Label>Email:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    className="mb-4"
+                                />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
                     </Card.Body>
                 </Card>
             </Row>
             <Row>
                 <Col className="mb-5" xs={12} md={12}>
                     {
-                        favouriteMovies && (<FavouriteMovies user={user} favouriteMovies={favoriteMovies} />)
+                        favoriteMovies && (<FavouriteMovies user={user} favouriteMovies={favoriteMovies} />)
                     }
                 </Col>
             </Row>
