@@ -108,7 +108,6 @@ export const ProfileView = ({ localUser, movies, token }) => {
     };
 
     useEffect(() => {
-        console.log(user)
         if (!token) {
             return;
         }
