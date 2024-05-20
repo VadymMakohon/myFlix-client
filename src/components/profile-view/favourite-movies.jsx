@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { MovieCard } from '../movie-card/movie-card';
@@ -26,4 +27,10 @@ export const FavouriteMovies = ({ user, favouriteMovies }) => {
             </Row>
         </Row>
     );
+};
+
+// Define propTypes for the FavouriteMovies component
+FavouriteMovies.propTypes = {
+    user: PropTypes.object.isRequired,
+    favouriteMovies: PropTypes.array.isRequired,
 };
