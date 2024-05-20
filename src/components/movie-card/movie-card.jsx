@@ -109,8 +109,8 @@ MovieCard.propTypes = {
         Title: PropTypes.string.isRequired,
         Image: PropTypes.string.isRequired,
         Description: PropTypes.string.isRequired,
-        // Genre: PropTypes.string.isRequired,
-        // Director: PropTypes.string.isRequired,
+        Genre: PropTypes.string.isRequired,
+        Director: PropTypes.string.isRequired,
         Featured: PropTypes.bool,
         id: PropTypes.string.isRequired
     }).isRequired

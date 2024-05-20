@@ -120,11 +120,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
             .then((data) => {
                 const usersFromApi = {
                     id: data._id,
-                    username: data.Username,
-                    password: data.Password,
-                    email: data.Email,
-                    birthDate: data.BirthDate,
-                    favoriteMovies: data.FavoriteMovies
+                    Username: data.Username,
+                    Password: data.Password,
+                    Email: data.Email,
+                    BirthDate: data.BirthDate,
+                    FavoriteMovies: data.FavoriteMovies
                 };
                 setUser(usersFromApi)
 

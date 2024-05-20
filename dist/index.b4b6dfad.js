@@ -27750,8 +27750,8 @@ MovieCard.propTypes = {
         Title: (0, _propTypesDefault.default).string.isRequired,
         Image: (0, _propTypesDefault.default).string.isRequired,
         Description: (0, _propTypesDefault.default).string.isRequired,
-        // Genre: PropTypes.string.isRequired,
-        // Director: PropTypes.string.isRequired,
+        Genre: (0, _propTypesDefault.default).string.isRequired,
+        Director: (0, _propTypesDefault.default).string.isRequired,
         Featured: (0, _propTypesDefault.default).bool,
         id: (0, _propTypesDefault.default).string.isRequired
     }).isRequired
@@ -42384,11 +42384,11 @@ const ProfileView = ({ localUser, movies, token })=>{
         }).then((response)=>response.json()).then((data)=>{
             const usersFromApi = {
                 id: data._id,
-                username: data.Username,
-                password: data.Password,
-                email: data.Email,
-                birthDate: data.BirthDate,
-                favoriteMovies: data.FavoriteMovies
+                Username: data.Username,
+                Password: data.Password,
+                Email: data.Email,
+                BirthDate: data.BirthDate,
+                FavoriteMovies: data.FavoriteMovies
             };
             setUser(usersFromApi);
         //   console.log("User Result Data: " + storedUser.username );
