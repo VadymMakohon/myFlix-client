@@ -15,7 +15,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     // ADD MOVIE TO FAVORITES
     const addToFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.title)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.Title)}`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -43,7 +43,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     // REMOVE MOVIE FROM FAVORITES
     const removeFromFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.title)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.Title)}`, {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -85,14 +85,15 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     return (
         <>
-
-            <Card>
-                <Card.Img variant="top" src={movie.Image} />
-                <Card.Body>
-                    <Card.Title>{movie.Title}</Card.Title>
-                    <Card.Text>{movie.Genre.Name}</Card.Text>
-                </Card.Body>
-            </Card>
+            <Link className="link-card" to={`/movies/${encodeURIComponent(movie.id)}`}>
+                <Card>
+                    <Card.Img variant="top" src={movie.Image} />
+                    <Card.Body>
+                        <Card.Title>{movie.Title}</Card.Title>
+                        {movie.Genre && <Card.Text>{movie.Genre.Name}</Card.Text>}
+                    </Card.Body>
+                </Card>
+            </Link>
             <Card>
                 {isFavorite ? (
                     <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove from favorites</Button>
@@ -109,9 +110,12 @@ MovieCard.propTypes = {
         Title: PropTypes.string.isRequired,
         Image: PropTypes.string.isRequired,
         Description: PropTypes.string.isRequired,
-        Genre: PropTypes.string.isRequired,
+        Genre: PropTypes.shape({
+            Name: PropTypes.string.isRequired
+        }).isRequired,
         Director: PropTypes.string.isRequired,
         Featured: PropTypes.bool,
         id: PropTypes.string.isRequired
     }).isRequired
 };
+
