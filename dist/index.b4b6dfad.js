@@ -27761,7 +27761,9 @@ MovieCard.propTypes = {
         Genre: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired
         }).isRequired,
-        Director: (0, _propTypesDefault.default).string.isRequired,
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
         Featured: (0, _propTypesDefault.default).bool,
         id: (0, _propTypesDefault.default).string.isRequired
     }).isRequired
