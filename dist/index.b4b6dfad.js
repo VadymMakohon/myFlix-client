@@ -42823,7 +42823,7 @@ parcelHelpers.export(exports, "FavouriteMovies", ()=>FavouriteMovies);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
+var _propTypes = require("prop-types"); // Import PropTypes
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
@@ -42887,6 +42887,11 @@ const FavouriteMovies = ({ user, favouriteMovies })=>{
     }, undefined);
 };
 _c = FavouriteMovies;
+// Define propTypes for the FavouriteMovies component
+FavouriteMovies.propTypes = {
+    user: (0, _propTypesDefault.default).object.isRequired,
+    favouriteMovies: (0, _propTypesDefault.default).array.isRequired
+};
 var _c;
 $RefreshReg$(_c, "FavouriteMovies");
 
