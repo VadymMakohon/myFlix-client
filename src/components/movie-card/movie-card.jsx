@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
 
@@ -105,20 +105,18 @@ export const MovieCard = ({ movie, isFavorite }) => {
     );
 };
 
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Image: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string.isRequired
-        }).isRequired,
-        Director: PropTypes.shape({
-            Name: PropTypes.string.isRequired
-        }).isRequired,
-        Featured: PropTypes.bool,
-        id: PropTypes.string.isRequired
-    }).isRequired
+const propTypes = {
+    moviesFromApi: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            Title: PropTypes.string.isRequired,
+            Image: PropTypes.string.isRequired,
+            Description: PropTypes.string.isRequired,
+            Genre: PropTypes.string.isRequired,
+            Director: PropTypes.string.isRequired,
+            Featured: PropTypes.bool.isRequired,
+        })
+    ).isRequired,
 };
 
 

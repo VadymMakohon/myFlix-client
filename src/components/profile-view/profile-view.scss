@@ -1,0 +1,23 @@
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.card-title {
+    text-align: left;
+}
+
+.card-text {
+    text-align: left;
+}
+
+.button-delete {
+    margin-top: auto;
+
+}
+
+.profile-img {
+    display: block;
+    margin: 24px auto;
+}

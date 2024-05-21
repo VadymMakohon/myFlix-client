@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { FavouriteMovies } from "./favourite-movies";
 import { UpdateUser } from "./update-user";
 import Form from "react-bootstrap/Form";
+import "./profile-view.scss";
 
 export const ProfileView = ({ localUser, movies, token }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
