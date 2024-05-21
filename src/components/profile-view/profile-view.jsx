@@ -27,47 +27,34 @@ export const ProfileView = ({ localUser, movies, token }) => {
         };
         console.log(formData)
         event.preventDefault(event);
-        try {
-            const response = await fetch(
-                `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(formData),
-                }
-            );
-            if (response.ok) {
-                console.log(responce)
-            }
-        } catch (error) {
-            console.log(error)
-        };
-        // fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}`, {
-        //     method: "PUT",
-        //     body: JSON.stringify(formData),
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // })
-        //     .then((response) => {
-        //         if (response.ok) {
-        //             alert("Update successful");
-        //             window.location.reload();
 
-        //             return response.json()
-        //         }
-        //         alert("Update failed");
-        //     })
-        //     .then((user) => {
-        //         if (user) {
-        //             localStorage.setItem('user', JSON.stringify(user));
-        //             setUser(user)
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
+            method: "PUT",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then((response) => {
+                if (response.ok) {
+                    alert("Update successful");
+                    window.location.reload();
+
+                    return response.json()
+                }
+            })
+
+            .then((user) => {
+                if (user) {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    setUser(user)
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Update failed");
+            });
     };
 
     const handleUpdate = (e) => {
@@ -142,7 +129,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                     <Card.Body>
                         <Card.Title>My Profile  </Card.Title>
                         {
-                            user && (<UserInfo name={user.username} email={user.email} />)
+                            user && (<UserInfo name={user.Username} email={user.Email} />)
                         }
                     </Card.Body>
                 </Card>

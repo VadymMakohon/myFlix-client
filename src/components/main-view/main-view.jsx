@@ -109,12 +109,10 @@ export const MainView = () => {
                             ) : (
                                 movies.map((movie) => (
                                     <Col className="mb-5" key={movie.id} md={3} sm={12}>
-                                        <Link to={`/movies/${movie.id}`}>
-                                            <MovieCard
-                                                movie={movie}
-                                                isFavorite={user.FavoriteMovies.includes(movie.Title)}
-                                            />
-                                        </Link>
+                                        <MovieCard
+                                            movie={movie}
+                                            isFavorite={user.FavoriteMovies.includes(movie.Title)}
+                                        />
                                     </Col>
                                 ))
                             )
