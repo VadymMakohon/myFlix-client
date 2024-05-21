@@ -42650,8 +42650,8 @@ const UserInfo = ({ email, name })=>{
 };
 _c = UserInfo;
 UserInfo.propTypes = {
-    email: (0, _propTypesDefault.default).string.isRequired,
-    name: (0, _propTypesDefault.default).string.isRequired
+    email: (0, _propTypesDefault.default).string,
+    name: (0, _propTypesDefault.default).string
 };
 var _c;
 $RefreshReg$(_c, "UserInfo");
@@ -42705,26 +42705,24 @@ const FavouriteMovies = ({ user, favouriteMovies })=>{
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         className: "mb-5",
                         md: 4,
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                                to: `/movies/${movie.Title}`
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/favourite-movies.jsx",
-                                lineNumber: 19,
-                                columnNumber: 29
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/movies/${movie.Title}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                 movie: movie,
-                                isFavourite: user.favouriteMovies.includes(movie.Title)
+                                isFavourite: user.FavouriteMovies.includes(movie.Title)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favourite-movies.jsx",
-                                lineNumber: 20,
-                                columnNumber: 29
+                                lineNumber: 21,
+                                columnNumber: 33
                             }, undefined)
-                        ]
-                    }, movie.id, true, {
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/favourite-movies.jsx",
+                            lineNumber: 20,
+                            columnNumber: 29
+                        }, undefined)
+                    }, movie._id, false, {
                         fileName: "src/components/profile-view/favourite-movies.jsx",
-                        lineNumber: 18,
+                        lineNumber: 19,
                         columnNumber: 25
                     }, undefined);
                 })

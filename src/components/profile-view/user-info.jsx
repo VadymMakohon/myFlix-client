@@ -11,6 +11,6 @@ export const UserInfo = ({ email, name }) => {
     );
 };
 UserInfo.propTypes = {
-    email: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+    email: PropTypes.string,
+    name: PropTypes.string,
 };

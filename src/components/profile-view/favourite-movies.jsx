@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
-import "./favourite-movies.scss"
+import "./favourite-movies.scss";
 
 export const FavouriteMovies = ({ user, favouriteMovies }) => {
     return (
@@ -14,20 +14,23 @@ export const FavouriteMovies = ({ user, favouriteMovies }) => {
             </Col>
             <Row>
                 {favouriteMovies.map((movie) => {
+
                     return (
-                        <Col className="mb-5" key={movie.id} md={4}>
-                            <Link to={`/movies/${movie.Title}`} />
-                            <MovieCard
-                                movie={movie}
-                                isFavourite={user.favouriteMovies.includes(movie.Title)}
-                            />
+                        <Col className="mb-5" key={movie._id} md={4}>
+                            <Link to={`/movies/${movie.Title}`}>
+                                <MovieCard
+                                    movie={movie}
+                                    isFavourite={user.FavouriteMovies.includes(movie.Title)}
+                                />
+                            </Link>
+
                         </Col>
                     );
                 })}
             </Row>
         </Row>
-    )
-}
+    );
+};
 
 FavouriteMovies.propTypes = {
     favouriteMovies: PropTypes.array.isRequired,
