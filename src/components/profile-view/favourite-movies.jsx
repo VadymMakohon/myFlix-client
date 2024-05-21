@@ -7,6 +7,8 @@ import { MovieCard } from "../movie-card/movie-card";
 import "./favourite-movies.scss";
 
 export const FavouriteMovies = ({ user, favouriteMovies }) => {
+    console.log(user);
+
     return (
         <Row>
             <Col className="mb-5">
@@ -17,7 +19,7 @@ export const FavouriteMovies = ({ user, favouriteMovies }) => {
 
                     return (
                         <Col className="mb-5" key={movie._id} md={4}>
-                            <Link to={`/movies/${movie.Title}`}>
+                            <Link to={`/movies/${movie.title}`}>
                                 <MovieCard
                                     movie={movie}
                                     isFavourite={user.FavouriteMovies.includes(movie.Title)}
