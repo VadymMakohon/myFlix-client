@@ -15,26 +15,22 @@ export const FavouriteMovies = ({ user, favouriteMovies }) => {
                 <h3>Favorite movies</h3>
             </Col>
             <Row>
-                {favouriteMovies.map((movie) => {
-
-                    return (
-                        <Col className="mb-5" key={movie._id} md={4}>
-                            <Link to={`/movies/${movie.title}`}>
-                                <MovieCard
-                                    movie={movie}
-                                    isFavourite={user.FavouriteMovies.includes(movie.Title)}
-                                />
-                            </Link>
-
-                        </Col>
-                    );
-                })}
+                {favouriteMovies.map((movie) => (
+                    <Col className="mb-5" key={movie._id} md={4}>
+                        <Link to={`/movies/${movie.Title}`}>
+                            <MovieCard
+                                movie={movie}
+                                isFavourite={user.FavouriteMovies.includes(movie.Title)}
+                            />
+                        </Link>
+                    </Col>
+                ))}
             </Row>
         </Row>
     );
 };
 
 FavouriteMovies.propTypes = {
-    favouriteMovies: PropTypes.array.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    favouriteMovies: PropTypes.array.isRequired
 };

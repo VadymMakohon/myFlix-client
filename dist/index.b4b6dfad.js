@@ -42702,31 +42702,29 @@ const FavouriteMovies = ({ user, favouriteMovies })=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                children: favouriteMovies.map((movie)=>{
-                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                children: favouriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         className: "mb-5",
                         md: 4,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: `/movies/${movie.title}`,
+                            to: `/movies/${movie.Title}`,
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                 movie: movie,
                                 isFavourite: user.FavouriteMovies.includes(movie.Title)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favourite-movies.jsx",
-                                lineNumber: 23,
-                                columnNumber: 33
+                                lineNumber: 21,
+                                columnNumber: 29
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favourite-movies.jsx",
-                            lineNumber: 22,
-                            columnNumber: 29
+                            lineNumber: 20,
+                            columnNumber: 25
                         }, undefined)
                     }, movie._id, false, {
                         fileName: "src/components/profile-view/favourite-movies.jsx",
-                        lineNumber: 21,
-                        columnNumber: 25
-                    }, undefined);
-                })
+                        lineNumber: 19,
+                        columnNumber: 21
+                    }, undefined))
             }, void 0, false, {
                 fileName: "src/components/profile-view/favourite-movies.jsx",
                 lineNumber: 17,
@@ -42741,8 +42739,8 @@ const FavouriteMovies = ({ user, favouriteMovies })=>{
 };
 _c = FavouriteMovies;
 FavouriteMovies.propTypes = {
-    favouriteMovies: (0, _propTypesDefault.default).array.isRequired,
-    user: (0, _propTypesDefault.default).object.isRequired
+    user: (0, _propTypesDefault.default).object.isRequired,
+    favouriteMovies: (0, _propTypesDefault.default).array.isRequired
 };
 var _c;
 $RefreshReg$(_c, "FavouriteMovies");
