@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { UserInfo } from "./user-info";
-import { Button, Card, Container, FormLabel } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FavouriteMovies } from "./favourite-movies";
-import { UpdateUser } from "./update-user";
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
@@ -12,9 +11,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     const [username, setUsername] = useState(storedUser.Username);
-    const [email, setEmail] = useState(storedUser.email);
-    const [password, setPassword] = useState(storedUser.password);
-    const [birthDate, setBirthdate] = useState(storedUser.birthDate);
+    const [email, setEmail] = useState(storedUser.Email);
+    const [password, setPassword] = useState(storedUser.Password);
+    const [birthDate, setBirthdate] = useState(storedUser.BirthDate);
     const [user, setUser] = useState({});
     const [userid, setUserid] = useState(storedUser._id);
     const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -23,7 +22,8 @@ export const ProfileView = ({ localUser, movies, token }) => {
         const formData = {
             Username: username,
             Email: email,
-            Password: password
+            Password: password,
+            FavouriteMovies: favouriteMovies
         };
         console.log(formData)
         event.preventDefault();
@@ -76,22 +76,33 @@ export const ProfileView = ({ localUser, movies, token }) => {
     };
 
     const handleDeleteAccount = () => {
+        console.log("Deleting account with ID:", userid);  // Logging the user ID
+
         fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
             }
-        }).then((response) => {
-            if (response.ok) {
-                alert("Account deleted successfully.");
-                localStorage.clear();
-                // Redirect the user or update state instead of reloading the page
-            } else {
-                alert("Something went wrong.");
-            }
-        });
+        })
+            .then((response) => {
+                if (response.ok) {
+                    alert("Account deleted successfully.");
+                    localStorage.clear();
+                    // Redirect the user or update state instead of reloading the page
+                } else {
+                    return response.text().then((text) => {
+                        console.error("Delete failed:", text);
+                        alert(`Something went wrong: ${text}`);
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Delete account error:", error);
+                alert("Something went wrong. Please try again later.");
+            });
     };
+
 
     useEffect(() => {
         if (!token) {
