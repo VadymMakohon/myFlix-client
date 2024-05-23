@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserInfo } from "./user-info";
 import { Button, Card, Container, FormLabel } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
@@ -17,8 +17,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
     const [birthDate, setBirthdate] = useState(storedUser.birthDate);
     const [user, setUser] = useState({});
     const [userid, setUserid] = useState(storedUser._id);
-    // const favoriteMovies = user === undefined ? [] : movies.filter(m => user.FavoriteMovies(m.Title))
-    const favoriteMovies = user === undefined ? [] : []
+    const [favoriteMovies, setFavoriteMovies] = useState([]);
 
     const handleSubmit = async (event) => {
         const formData = {
@@ -113,10 +112,10 @@ export const ProfileView = ({ localUser, movies, token }) => {
                     BirthDate: data.BirthDate,
                     FavoriteMovies: data.FavoriteMovies
                 };
-                setUser(usersFromApi)
+                setUser(usersFromApi);
 
-                //   console.log("User Result Data: " + storedUser.username );
-                //   storedUser = user;
+                console.log("User Result Data: " + usersFromApi.Username);
+                setFavoriteMovies(movies.filter(m => data.FavoriteMovies.includes(m._id)));
             })
             .catch((error) => {
                 console.error(error);
@@ -128,7 +127,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
             <Row>
                 <Card className="mb-5">
                     <Card.Body>
-                        <Card.Title>My Profile  </Card.Title>
+                        <Card.Title>My Profile</Card.Title>
                         {
                             user && (<UserInfo name={user.Username} email={user.Email} />)
                         }
@@ -136,12 +135,6 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 </Card>
                 <Card className="mb-5">
                     <Card.Body>
-                        {/* <UpdateUser
-                            formData={formData}
-                            handleUpdate={handleUpdate}
-                            handleSubmit={handleSubmit}
-                            handleDeleteAccount={handleDeleteAccount}
-                        /> */}
                         <Form onSubmit={handleSubmit}>
                             <h1>Edit profile info</h1>
 
@@ -169,6 +162,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
                                 Submit
                             </Button>
                         </Form>
+                        <Button variant="danger" onClick={handleDeleteAccount}>
+                            Delete Account
+                        </Button>
                     </Card.Body>
                 </Card>
             </Row>
