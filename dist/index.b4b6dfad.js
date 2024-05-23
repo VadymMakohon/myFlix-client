@@ -42345,7 +42345,7 @@ const ProfileView = ({ localUser, movies, token })=>{
             Username: username,
             Email: email,
             Password: password,
-            FavouriteMovies: favouriteMovies
+            FavoriteMovies: favoriteMovies
         };
         console.log(formData);
         event.preventDefault();
@@ -42429,7 +42429,7 @@ const ProfileView = ({ localUser, movies, token })=>{
             };
             setUser(userFromApi);
             console.log("User Result Data: " + userFromApi.Username);
-            setFavoriteMovies(movies.filter((m)=>data.FavoriteMovies.includes(m._id)));
+            setFavoriteMovies(movies.filter((m)=>data.FavoriteMovies.includes(movies._id)));
         }).catch((error)=>{
             console.error(error);
         });
