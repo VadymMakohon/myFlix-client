@@ -26,7 +26,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
             Password: password
         };
         console.log(formData)
-        event.preventDefault(event);
+        event.preventDefault();
 
         fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
             method: "PUT",
@@ -41,14 +41,13 @@ export const ProfileView = ({ localUser, movies, token }) => {
                     alert("Update successful");
                     window.location.reload();
 
-                    return response.json()
+                    return response.json();
                 }
             })
-
             .then((user) => {
                 if (user) {
                     localStorage.setItem('user', JSON.stringify(user));
-                    setUser(user)
+                    setUser(user);
                 }
             })
             .catch((error) => {
@@ -70,14 +69,14 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 break;
             case "date":
                 setBirthdate(e.target.value);
-                break; // Add break statement
+                break;
             default:
-                break; // Ensure default case has a break statement
+                break;
         }
     };
 
     const handleDeleteAccount = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, { // Use user.id
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -104,7 +103,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                const usersFromApi = {
+                const userFromApi = {
                     id: data._id,
                     Username: data.Username,
                     Password: data.Password,
@@ -112,15 +111,15 @@ export const ProfileView = ({ localUser, movies, token }) => {
                     BirthDate: data.BirthDate,
                     FavoriteMovies: data.FavoriteMovies
                 };
-                setUser(usersFromApi);
+                setUser(userFromApi);
 
-                console.log("User Result Data: " + usersFromApi.Username);
+                console.log("User Result Data: " + userFromApi.Username);
                 setFavoriteMovies(movies.filter(m => data.FavoriteMovies.includes(m._id)));
             })
             .catch((error) => {
                 console.error(error);
             });
-    }, [token]);
+    }, [token, userid, movies]);
 
     return (
         <Container className="mx-1">
@@ -128,9 +127,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 <Card className="mb-5">
                     <Card.Body>
                         <Card.Title>My Profile</Card.Title>
-                        {
-                            user && (<UserInfo name={user.Username} email={user.Email} />)
-                        }
+                        {user && (<UserInfo name={user.Username} email={user.Email} />)}
                     </Card.Body>
                 </Card>
                 <Card className="mb-5">
@@ -148,7 +145,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                                     className="mb-4"
                                 />
                             </Form.Group>
-                            <Form.Group controlId="formPassword">
+                            <Form.Group controlId="formEmail">
                                 <Form.Label>Email:</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -162,7 +159,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                                 Submit
                             </Button>
                         </Form>
-                        <Button variant="danger" onClick={handleDeleteAccount}>
+                        <Button variant="danger" onClick={handleDeleteAccount} className="mt-3">
                             Delete Account
                         </Button>
                     </Card.Body>
@@ -170,11 +167,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
             </Row>
             <Row>
                 <Col className="mb-5" xs={12} md={12}>
-                    {
-                        favoriteMovies && (<FavouriteMovies user={user} favouriteMovies={favoriteMovies} />)
-                    }
+                    {favoriteMovies && (<FavouriteMovies user={user} favouriteMovies={favoriteMovies} />)}
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};
