@@ -42728,16 +42728,19 @@ const FavouriteMovies = ({ user, favouriteMovies })=>{
                         className: "mb-5",
                         md: 4,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: `/movies/${movie.Title}`,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                movie: movie,
-                                isFavourite: user.FavoriteMovies.includes(movie._id)
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/favourite-movies.jsx",
-                                lineNumber: 22,
-                                columnNumber: 29
-                            }, undefined)
-                        }, void 0, false, {
+                            to: `/movies/${movie._id}`,
+                            children: [
+                                " ",
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                    movie: movie,
+                                    isFavourite: user.FavoriteMovies.includes(movie._id)
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/favourite-movies.jsx",
+                                    lineNumber: 22,
+                                    columnNumber: 29
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
                             fileName: "src/components/profile-view/favourite-movies.jsx",
                             lineNumber: 21,
                             columnNumber: 25
