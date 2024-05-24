@@ -15,10 +15,6 @@ img {
   margin-bottom: 16px;
 }
 
-.title {
-  margin: 24px 0 16px;
-}
-
 .card-body {
   align-items: left;
   flex-direction: column;
@@ -36,6 +32,10 @@ img {
 .profile-img {
   margin: 24px auto;
   display: block;
+}
+
+.title {
+  margin: 24px 0 16px;
 }
 
 :root, [data-bs-theme="light"] {

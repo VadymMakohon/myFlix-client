@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { UserInfo } from "./user-info";
-import { Button, Card, Container, FormLabel } from 'react-bootstrap';
+import { Button, Card, Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavoriteMovies } from "./favorite-movies";
-import { UpdateUser } from "./update-user";
+import { FavouriteMovies } from "./favorite-movies";
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
-export const ProfileView = ({ localUser, movies, token }) => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-
-    const [username, setUsername] = useState(storedUser.Username);
-    const [email, setEmail] = useState(storedUser.Email);
-    const [password, setPassword] = useState(storedUser.Password);
-    const [birthDate, setBirthdate] = useState(storedUser.BirthDate);
-    const [user, setUser] = useState({});
-    const [userid, setUserid] = useState(storedUser._id);
+export const ProfileView = ({ localUser, token }) => {
+    const [username, setUsername] = useState(localUser.Username);
+    const [email, setEmail] = useState(localUser.Email);
+    const [password, setPassword] = useState(localUser.Password);
+    const [user, setUser] = useState(localUser);
     const [favoriteMovies, setFavoriteMovies] = useState([]);
 
     const handleSubmit = async (event) => {
@@ -24,18 +19,21 @@ export const ProfileView = ({ localUser, movies, token }) => {
         const formData = {
             Username: username,
             Email: email,
-            Password: password
+            Password: password,
         };
 
         try {
-            const response = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
-                method: "PUT",
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+            const response = await fetch(
+                `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user._id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(formData),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            });
+            );
             if (response.ok) {
                 alert("Update successful");
                 window.location.reload();
@@ -48,13 +46,16 @@ export const ProfileView = ({ localUser, movies, token }) => {
 
     const handleDeleteAccount = async () => {
         try {
-            const response = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
+            const response = await fetch(
+                `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user._id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
                 }
-            });
+            );
             if (response.ok) {
                 alert("Account deleted successfully.");
                 localStorage.clear();
@@ -69,35 +70,40 @@ export const ProfileView = ({ localUser, movies, token }) => {
     };
 
     useEffect(() => {
-        if (!token) {
-            return;
-        }
-
-        const fetchData = async () => {
+        const fetchUserData = async () => {
             try {
-                const userResponse = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${userid}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                const userData = await userResponse.json();
-                setUser(userData);
+                const response = await fetch(
+                    `https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${user._id}`,
+                    {
+                        headers: { Authorization: `Bearer ${token}` },
+                    }
+                );
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUser(userData);
 
-                // Fetch favorite movies
-                const favoriteMoviesResponse = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                if (favoriteMoviesResponse.ok) {
-                    const favoriteMoviesData = await favoriteMoviesResponse.json();
-                    setFavoriteMovies(favoriteMoviesData);
+                    const favoriteMoviesResponse = await fetch(
+                        `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies`,
+                        {
+                            headers: { Authorization: `Bearer ${token}` },
+                        }
+                    );
+                    if (favoriteMoviesResponse.ok) {
+                        const favoriteMoviesData = await favoriteMoviesResponse.json();
+                        setFavoriteMovies(favoriteMoviesData);
+                    } else {
+                        console.error("Failed to fetch favorite movies");
+                    }
                 } else {
-                    console.error("Failed to fetch favorite movies");
+                    console.error("Failed to fetch user data");
                 }
             } catch (error) {
                 console.error(error);
             }
         };
 
-        fetchData();
-    }, [token, userid, user.Username]);
+        fetchUserData();
+    }, [user._id, user.Username, token]);
 
     return (
         <Container className="mx-1">
@@ -105,7 +111,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
                 <Card className="mb-5">
                     <Card.Body>
                         <Card.Title>My Profile</Card.Title>
-                        {user && (<UserInfo name={user.Username} email={user.Email} />)}
+                        {user && <UserInfo name={user.Username} email={user.Email} />}
                     </Card.Body>
                 </Card>
                 <Card className="mb-5">
@@ -137,7 +143,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
                                 Submit
                             </Button>
                         </Form>
-                        <Button variant="danger" onClick={handleDeleteAccount} className="mt-3">
+                        <Button
+                            variant="danger"
+                            onClick={handleDeleteAccount}
+                            className="mt-3"
+                        >
                             Delete Account
                         </Button>
                     </Card.Body>
@@ -145,7 +155,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
             </Row>
             <Row>
                 <Col className="mb-5" xs={12} md={12}>
-                    {favoriteMovies && (<FavouriteMovies user={user} favouriteMovies={favoriteMovies} />)}
+                    {favoriteMovies && (
+                        <FavouriteMovies user={user} favouriteMovies={favoriteMovies} />
+                    )}
                 </Col>
             </Row>
         </Container>

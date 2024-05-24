@@ -15,7 +15,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     // ADD MOVIE TO FAVORITES
     const addToFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.Title)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.id)}`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -43,7 +43,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     // REMOVE MOVIE FROM FAVORITES
     const removeFromFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.Title)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.id)}`, {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -106,17 +106,19 @@ export const MovieCard = ({ movie, isFavorite }) => {
 };
 
 const propTypes = {
-    moviesFromApi: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            Title: PropTypes.string.isRequired,
-            Image: PropTypes.string.isRequired,
-            Description: PropTypes.string.isRequired,
-            Genre: PropTypes.string.isRequired,
-            Director: PropTypes.string.isRequired,
-            Featured: PropTypes.bool.isRequired,
-        })
-    ).isRequired,
+    movie: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        Title: PropTypes.string.isRequired,
+        Image: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        Genre: PropTypes.shape({
+            Name: PropTypes.string.isRequired,
+        }).isRequired,
+        Director: PropTypes.string.isRequired,
+        Featured: PropTypes.bool.isRequired,
+    }).isRequired,
+    isFavorite: PropTypes.bool.isRequired,
 };
+
 
 
