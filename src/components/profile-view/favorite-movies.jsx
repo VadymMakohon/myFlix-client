@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
-import "./favourite-movies.scss";
+import "./favorite-movies.scss";
 
 export const FavouriteMovies = ({ user, favouriteMovies }) => {
     console.log("User in FavouriteMovies:", user);
@@ -18,7 +18,7 @@ export const FavouriteMovies = ({ user, favouriteMovies }) => {
             <Row>
                 {favouriteMovies.map((movie) => (
                     <Col className="mb-5" key={movie._id} md={4}>
-                        <Link to={`/movies/${movie._id}`}> {/* Correct the link */}
+                        <Link to={`/movies/${movie.Title}`}> {/* Assuming movie.Title is used as the identifier */}
                             <MovieCard
                                 movie={movie}
                                 isFavourite={user.FavoriteMovies.includes(movie._id)}

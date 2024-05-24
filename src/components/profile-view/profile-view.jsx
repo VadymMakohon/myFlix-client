@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { UserInfo } from "./user-info";
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Card, Container, FormLabel } from 'react-bootstrap';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavouriteMovies } from "./favourite-movies";
+import { FavoriteMovies } from "./favorite-movies";
+import { UpdateUser } from "./update-user";
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
@@ -19,118 +20,84 @@ export const ProfileView = ({ localUser, movies, token }) => {
     const [favoriteMovies, setFavoriteMovies] = useState([]);
 
     const handleSubmit = async (event) => {
+        event.preventDefault();
         const formData = {
             Username: username,
             Email: email,
-            Password: password,
-            FavoriteMovies: favoriteMovies
+            Password: password
         };
-        console.log(formData)
-        event.preventDefault();
 
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
-            method: "PUT",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then((response) => {
-                if (response.ok) {
-                    alert("Update successful");
-                    window.location.reload();
-
-                    return response.json();
+        try {
+            const response = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
+                method: "PUT",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 }
-            })
-            .then((user) => {
-                if (user) {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    setUser(user);
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                alert("Update failed");
             });
-    };
-
-    const handleUpdate = (e) => {
-        switch (e.target.type) {
-            case "text":
-                setUsername(e.target.value);
-                break;
-            case "email":
-                setEmail(e.target.value);
-                break;
-            case "password":
-                setPassword(e.target.value);
-                break;
-            case "date":
-                setBirthdate(e.target.value);
-                break;
-            default:
-                break;
+            if (response.ok) {
+                alert("Update successful");
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Update failed");
         }
     };
 
-    const handleDeleteAccount = () => {
-        console.log("Deleting account with ID:", userid);  // Logging the user ID
-
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            }
-        })
-            .then((response) => {
-                if (response.ok) {
-                    alert("Account deleted successfully.");
-                    localStorage.clear();
-                    // Redirect the user or update state instead of reloading the page
-                } else {
-                    return response.text().then((text) => {
-                        console.error("Delete failed:", text);
-                        alert(`Something went wrong: ${text}`);
-                    });
+    const handleDeleteAccount = async () => {
+        try {
+            const response = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${userid}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 }
-            })
-            .catch((error) => {
-                console.error("Delete account error:", error);
-                alert("Something went wrong. Please try again later.");
             });
+            if (response.ok) {
+                alert("Account deleted successfully.");
+                localStorage.clear();
+                // Redirect the user or update state instead of reloading the page
+            } else {
+                alert("Something went wrong.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Failed to delete account.");
+        }
     };
-
 
     useEffect(() => {
         if (!token) {
             return;
         }
 
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${userid}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                const userFromApi = {
-                    id: data._id,
-                    Username: data.Username,
-                    Password: data.Password,
-                    Email: data.Email,
-                    BirthDate: data.BirthDate,
-                    FavoriteMovies: data.FavoriteMovies
-                };
-                setUser(userFromApi);
+        const fetchData = async () => {
+            try {
+                const userResponse = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${userid}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const userData = await userResponse.json();
+                setUser(userData);
 
-                console.log("User Result Data: " + userFromApi.Username);
-                setFavoriteMovies(movies.filter(m => data.FavoriteMovies.includes(movies._id)));
-            })
-            .catch((error) => {
+                // Fetch favorite movies
+                const favoriteMoviesResponse = await fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (favoriteMoviesResponse.ok) {
+                    const favoriteMoviesData = await favoriteMoviesResponse.json();
+                    setFavoriteMovies(favoriteMoviesData);
+                } else {
+                    console.error("Failed to fetch favorite movies");
+                }
+            } catch (error) {
                 console.error(error);
-            });
-    }, [token, userid, movies]);
+            }
+        };
+
+        fetchData();
+    }, [token, userid, user.Username]);
 
     return (
         <Container className="mx-1">
