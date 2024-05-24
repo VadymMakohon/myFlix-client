@@ -7,9 +7,6 @@ import { MovieCard } from "../movie-card/movie-card";
 import "./favorite-movies.scss";
 
 export const FavouriteMovies = ({ user, favouriteMovies }) => {
-    console.log("User in FavouriteMovies:", user);
-    console.log("FavouriteMovies:", favouriteMovies);
-
     return (
         <Row>
             <Col className="mb-5">

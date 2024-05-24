@@ -3,7 +3,7 @@ import { UserInfo } from "./user-info";
 import { Button, Card, Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavouriteMovies } from "./favorite-movies";
+import { FavouriteMovies } from "./favorite-movies"; // Import the FavoriteMovies component
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
