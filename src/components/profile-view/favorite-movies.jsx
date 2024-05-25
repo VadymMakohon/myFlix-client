@@ -6,29 +6,26 @@ import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import "./favorite-movies.scss";
 
-export const FavouriteMovies = ({ user, favouriteMovies }) => {
+export const FavouriteMovies = ({ favouriteMovies, updateUser }) => {
     return (
-        <Row>
-            <Col className="mb-5">
-                <h3>Favorite movies</h3>
-            </Col>
+        <Col className="py-3 px-4">
+            <h2>List of favorite movies</h2>
             <Row>
                 {favouriteMovies.map((movie) => (
-                    <Col className="mb-5" key={movie._id} md={4}>
-                        <Link to={`/movies/${movie.Title}`}> {/* Assuming movie.Title is used as the identifier */}
-                            <MovieCard
-                                movie={movie}
-                                isFavourite={user.FavoriteMovies.includes(movie._id)}
-                            />
-                        </Link>
+                    <Col key={movie.id} lg={3} md={4} sm={6} className="mb-5">
+                        <MovieCard
+                            movie={movie}
+                            updateUser={updateUser}
+                        />
                     </Col>
-                ))}
-            </Row>
-        </Row>
-    );
-};
+                ))
+                }
 
+            </Row>
+        </Col>
+    );
+}
 FavouriteMovies.propTypes = {
-    user: PropTypes.object.isRequired,
-    favouriteMovies: PropTypes.array.isRequired
+    favoriteMovies: PropTypes.array.isRequired,
+    updateUser: PropTypes.func.isRequired
 };
