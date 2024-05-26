@@ -42616,7 +42616,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
-const UserInfo = ({ email, name, FavouriteMovies })=>{
+const UserInfo = ({ email, name })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -42654,6 +42654,10 @@ const UserInfo = ({ email, name, FavouriteMovies })=>{
     }, undefined);
 };
 _c = UserInfo;
+UserInfo.propTypes = {
+    email: (0, _propTypesDefault.default).string.isRequired,
+    name: (0, _propTypesDefault.default).string.isRequired
+};
 var _c;
 $RefreshReg$(_c, "UserInfo");
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card } from 'react-bootstrap';
 
-export const UserInfo = ({ email, name, FavouriteMovies, }) => {
+export const UserInfo = ({ email, name }) => {
     return (
         <div>
             <h2>User Info</h2>
@@ -10,4 +10,9 @@ export const UserInfo = ({ email, name, FavouriteMovies, }) => {
             <Card.Text>Email: {email}</Card.Text>
         </div>
     );
+};
+
+UserInfo.propTypes = {
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
 };
