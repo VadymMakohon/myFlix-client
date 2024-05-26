@@ -34248,7 +34248,7 @@ const MovieCard = ({ movie, isFavorite })=>{
     const [delTitle, setDelTitle] = (0, _react.useState)("");
     // ADD MOVIE TO FAVORITES
     const addToFavorites = ()=>{
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -34270,7 +34270,7 @@ const MovieCard = ({ movie, isFavorite })=>{
     };
     // REMOVE MOVIE FROM FAVORITES
     const removeFromFavorites = ()=>{
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -42616,7 +42616,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
-const UserInfo = ({ email, name })=>{
+const UserInfo = ({ email, name, FavouriteMovies })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -42654,14 +42654,6 @@ const UserInfo = ({ email, name })=>{
     }, undefined);
 };
 _c = UserInfo;
-UserInfo.propTypes = {
-    email: (0, _propTypesDefault.default).string,
-    name: (0, _propTypesDefault.default).string,
-    favoriteMovies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).shape({
-        _id: (0, _propTypesDefault.default).string.isRequired,
-        Title: (0, _propTypesDefault.default).string.isRequired
-    })).isRequired
-};
 var _c;
 $RefreshReg$(_c, "UserInfo");
 
@@ -42736,8 +42728,8 @@ const FavouriteMovies = ({ favouriteMovies, updateUser })=>{
 };
 _c = FavouriteMovies;
 FavouriteMovies.propTypes = {
-    favoriteMovies: (0, _propTypesDefault.default).array.isRequired,
-    updateUser: (0, _propTypesDefault.default).func.isRequired
+    favouriteMovies: (0, _propTypesDefault.default).array.isRequired,
+    updateUser: (0, _propTypesDefault.default).object.isRequired
 };
 var _c;
 $RefreshReg$(_c, "FavouriteMovies");

@@ -15,7 +15,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     // ADD MOVIE TO FAVORITES
     const addToFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -43,7 +43,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
     // REMOVE MOVIE FROM FAVORITES
     const removeFromFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${token}`,

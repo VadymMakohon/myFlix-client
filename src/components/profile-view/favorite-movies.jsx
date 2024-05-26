@@ -26,6 +26,6 @@ export const FavouriteMovies = ({ favouriteMovies, updateUser }) => {
     );
 }
 FavouriteMovies.propTypes = {
-    favoriteMovies: PropTypes.array.isRequired,
-    updateUser: PropTypes.func.isRequired
+    favouriteMovies: PropTypes.array.isRequired,
+    updateUser: PropTypes.object.isRequired
 };
