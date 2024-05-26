@@ -1,31 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
-import "./favorite-movies.scss";
+import { Row, Col } from 'react-bootstrap';
 
-export const FavouriteMovies = ({ favouriteMovies, updateUser }) => {
+export const FavouriteMovies = ({ user, favouriteMovies, updateUser }) => {
     return (
-        <Col className="py-3 px-4">
-            <h2>List of favorite movies</h2>
-            <Row>
-                {favouriteMovies.map((movie) => (
-                    <Col key={movie.id} lg={3} md={4} sm={6} className="mb-5">
-                        <MovieCard
-                            movie={movie}
-                            updateUser={updateUser}
-                        />
-                    </Col>
-                ))
-                }
-
-            </Row>
-        </Col>
+        <>
+            <h1 className="my-5">Favorite Movies</h1>
+            {favouriteMovies.length === 0 ? (
+                <div>List is empty</div>
+            ) : (
+                <Row md={12}>
+                    {favouriteMovies.map((movie) => (
+                        <Col key={movie._id} className="mb-5" md={3}>
+                            <MovieCard
+                                movie={movie}
+                                isFavorite={user.FavoriteMovies.includes(movie._id)}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            )}
+        </>
     );
-}
+};
+
 FavouriteMovies.propTypes = {
-    favouriteMovies: PropTypes.array.isRequired,
-    updateUser: PropTypes.object.isRequired
+    user: PropTypes.shape({
+        FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    favouriteMovies: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            Title: PropTypes.string.isRequired,
+            Image: PropTypes.string.isRequired,
+            Description: PropTypes.string.isRequired,
+            Genre: PropTypes.shape({
+                Name: PropTypes.string.isRequired,
+            }).isRequired,
+            Director: PropTypes.string.isRequired,
+            Featured: PropTypes.bool.isRequired,
+        })
+    ).isRequired,
+    updateUser: PropTypes.func.isRequired,
 };

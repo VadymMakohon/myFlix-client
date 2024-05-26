@@ -2,6 +2,10 @@
   text-decoration: none;
 }
 
+.title {
+  margin: 24px 0 16px;
+}
+
 .back-button {
   color: #f5f5f5;
   background-color: #1e90ff;
@@ -32,10 +36,6 @@ img {
 .profile-img {
   margin: 24px auto;
   display: block;
-}
-
-.title {
-  margin: 24px 0 16px;
 }
 
 :root, [data-bs-theme="light"] {

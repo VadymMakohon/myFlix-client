@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
+import React from 'react'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
 
 export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount }) => {
     return (
@@ -14,9 +13,8 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
                     <Form.Control
                         type="text"
                         minLength={4}
-                        name="username" // Add name attribute
                         value={formData.username}
-                        onChange={handleUpdate}
+                        onChange={(e) => handleUpdate(e)}
                         required
                     />
                 </Form.Group>
@@ -27,19 +25,17 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
                     <Form.Control
                         type="password"
                         minLength={8}
-                        name="password" // Add name attribute
                         value={formData.password}
-                        onChange={handleUpdate}
+                        onChange={(e) => handleUpdate(e)}
                         required
                     />
-                </Form.Group>
+                </Form.Group >
                 <Form.Group className='mb-2'>
-                    <Form.Label>Email:</Form.Label>
+                    <Form.Label> Email: </Form.Label>
                     <Form.Control
                         type="email"
-                        name="email" // Add name attribute
                         value={formData.email}
-                        onChange={handleUpdate}
+                        onChange={(e) => handleUpdate(e)}
                         required
                     />
                 </Form.Group>
@@ -47,17 +43,16 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
                     <Form.Label>Birthdate:</Form.Label>
                     <Form.Control
                         type="date"
-                        name="birthDate" // Add name attribute
                         value={formData.birthDate.slice(0, 10)}
-                        onChange={handleUpdate}
+                        onChange={(e) => handleUpdate(e)}
                         required
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">Submit Changes</Button>
+                <Button variant="primary" type="submit" >Submit Changes</Button>
                 <Button
-                    onClick={handleDeleteAccount}
+                    onClick={() => handleDeleteAccount()}
                     variant="outline-secondary"
-                    className="mx-3">
+                    className="mx-3" >
                     Delete account
                 </Button>
             </Form>
