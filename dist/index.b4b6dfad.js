@@ -34238,7 +34238,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
 var _s = $RefreshSig$();
-const MovieCard = ({ movie, isFavorite })=>{
+const MovieCard = ({ movie, isFavorite, updateUser })=>{
     _s();
     const storedToken = localStorage.getItem("token");
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -34386,7 +34386,8 @@ const propTypes = {
         Director: (0, _propTypesDefault.default).string.isRequired,
         Featured: (0, _propTypesDefault.default).bool.isRequired
     }).isRequired,
-    isFavorite: (0, _propTypesDefault.default).bool.isRequired
+    isFavorite: (0, _propTypesDefault.default).bool.isRequired,
+    updateUser: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");
@@ -42683,7 +42684,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _movieCard = require("../movie-card/movie-card");
 var _reactBootstrap = require("react-bootstrap");
-const FavouriteMovies = ({ user, favouriteMovies, updateUser })=>{
+const FavouriteMovies = ({ user, favouriteMovies })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
@@ -42741,8 +42742,7 @@ FavouriteMovies.propTypes = {
         }).isRequired,
         Director: (0, _propTypesDefault.default).string.isRequired,
         Featured: (0, _propTypesDefault.default).bool.isRequired
-    })).isRequired,
-    updateUser: (0, _propTypesDefault.default).func.isRequired
+    })).isRequired
 };
 var _c;
 $RefreshReg$(_c, "FavouriteMovies");

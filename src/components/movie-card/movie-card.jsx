@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Card, Row, Col } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie, isFavorite }) => {
+export const MovieCard = ({ movie, isFavorite, updateUser }) => {
     const storedToken = localStorage.getItem("token");
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -118,6 +118,7 @@ const propTypes = {
         Featured: PropTypes.bool.isRequired,
     }).isRequired,
     isFavorite: PropTypes.bool.isRequired,
+    updateUser: PropTypes.func.isRequired,
 };
 
 

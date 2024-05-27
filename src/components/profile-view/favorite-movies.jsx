@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col } from 'react-bootstrap';
 
-export const FavouriteMovies = ({ user, favouriteMovies, updateUser }) => {
+export const FavouriteMovies = ({ user, favouriteMovies }) => {
     return (
         <>
             <h1 className="my-5">Favorite Movies</h1>
@@ -42,5 +42,4 @@ FavouriteMovies.propTypes = {
             Featured: PropTypes.bool.isRequired,
         })
     ).isRequired,
-    updateUser: PropTypes.func.isRequired,
 };
