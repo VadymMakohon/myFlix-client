@@ -27,4 +27,5 @@ Install Parcel as a local developer dependency inside your project
 npm install --save-dev  parcel@2.11.0
 
 # Contributors
+
 - [Vadym Makohon](https://github.com/VadymMakohon)
