@@ -1,3 +1,7 @@
 .link-card {
     text-decoration: none;
+
+    .card {
+        height: 95%; // Set a fixed height for the card
+    }
 }
