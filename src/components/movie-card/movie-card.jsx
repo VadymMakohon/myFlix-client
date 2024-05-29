@@ -15,13 +15,14 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
 
     // ADD MOVIE TO FAVORITES
     const addToFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
-            method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        })
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
+            {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Failed to add movie to favorites.");
@@ -31,6 +32,7 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
                 return response.json();
             })
             .then((user) => {
+                console.log(user)
                 if (user) {
                     localStorage.setItem('user', JSON.stringify(user));
                     setUser(user);
