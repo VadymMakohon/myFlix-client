@@ -1,7 +1,7 @@
 {
   "name": "myflix-client",
   "version": "1.0.0",
-  "description": "# Project Overview:",
+  "description": "Client of movie app build with React",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
