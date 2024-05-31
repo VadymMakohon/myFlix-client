@@ -3,21 +3,16 @@ import { UserInfo } from "./user-info";
 import { Button, Card, Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavouriteMovies } from "./favorite-movies";
+import { FavouriteMovies } from "./favorite-movies"; // Import the FavoriteMovies component
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
-export const ProfileView = ({ localUser, token }) => {
+export const ProfileView = ({ localUser, token, updateUser }) => {
     const [username, setUsername] = useState(localUser.Username);
     const [email, setEmail] = useState(localUser.Email);
     const [password, setPassword] = useState(localUser.Password);
     const [user, setUser] = useState(localUser);
     const [favoriteMovies, setFavoriteMovies] = useState([]);
-
-    const updateUser = (updatedUser) => {
-        setUser(updatedUser);
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -41,7 +36,9 @@ export const ProfileView = ({ localUser, token }) => {
             );
             if (response.ok) {
                 alert("Update successful");
-                window.location.reload();
+                const updatedUser = await response.json();
+                setUser(updatedUser);
+                updateUser(updatedUser);
             }
         } catch (error) {
             console.error(error);

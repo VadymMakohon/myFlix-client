@@ -31,14 +31,14 @@ export const MainView = () => {
                 return response.json();
             })
             .then((data) => {
-                const moviesFromApi = data.map((data) => ({
-                    id: data._id,
-                    Title: data.Title,
-                    Image: data.ImagePath,
-                    Description: data.Description,
-                    Genre: data.Genre,
-                    Director: data.Director,
-                    Featured: data.Featured
+                const moviesFromApi = data.map((movie) => ({
+                    id: movie._id,
+                    Title: movie.Title,
+                    ImagePath: movie.ImagePath,
+                    Description: movie.Description,
+                    Genre: movie.Genre,
+                    Director: movie.Director,
+                    Featured: movie.Featured
                 }));
                 setMovies(moviesFromApi);
             })
@@ -116,7 +116,7 @@ export const MainView = () => {
                                     <Col className="mb-5" key={movie.id} md={3} sm={12}>
                                         <MovieCard
                                             movie={movie}
-                                            isFavorite={user.FavoriteMovies.includes(movie.id)}
+                                            isFavorite={user?.FavoriteMovies?.includes(movie.id) || false} // Ensure isFavorite is always a boolean
                                             updateUser={updateUser}
                                         />
                                     </Col>
@@ -131,7 +131,7 @@ export const MainView = () => {
                                 <Navigate to="/login" replace />
                             ) : (
                                 <Col md={8}>
-                                    <ProfileView localUser={user} movies={movies} token={token} />
+                                    <ProfileView localUser={user} movies={movies} token={token} updateUser={updateUser} />
                                 </Col>
                             )
                         }

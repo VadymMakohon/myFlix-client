@@ -15,7 +15,7 @@ export const FavouriteMovies = ({ user, favouriteMovies, updateUser }) => {
                         <Col key={movie._id} className="mb-5" md={3}>
                             <MovieCard
                                 movie={movie}
-                                isFavorite={user.FavoriteMovies.includes(movie._id)}
+                                isFavorite={user?.FavoriteMovies?.includes(movie._id) || false}
                                 updateUser={updateUser}
                             />
                         </Col>

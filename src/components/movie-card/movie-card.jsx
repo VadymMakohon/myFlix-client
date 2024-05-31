@@ -10,9 +10,8 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
-    // ADD MOVIE TO FAVORITES
     const addToFavorites = () => {
-        if (user.FavoriteMovies.includes(movie.id)) {
+        if (user?.FavoriteMovies?.includes(movie.id)) {
             alert("This movie is already in your favorites.");
             return;
         }
@@ -42,7 +41,6 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
             });
     };
 
-    // REMOVE MOVIE FROM FAVORITES
     const removeFromFavorites = () => {
         fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: 'DELETE',
@@ -73,7 +71,7 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
         <>
             <Link className="link-card" to={`/movies/${encodeURIComponent(movie.id)}`}>
                 <Card>
-                    <Card.Img variant="top" src={movie.ImagePath} />
+                    <Card.Img variant="top" src={movie.ImagePath} alt={movie.Title} />
                     <Card.Body>
                         <Card.Title>{movie.Title}</Card.Title>
                         {movie.Genre && <Card.Text>{movie.Genre.Name}</Card.Text>}
@@ -101,8 +99,8 @@ MovieCard.propTypes = {
             Name: PropTypes.string.isRequired,
         }).isRequired,
         Director: PropTypes.shape({
-            Name: PropTypes.string.isRequired, // If Director is an object with Name
-        }).isRequired, // If Director is an object, update this accordingly
+            Name: PropTypes.string.isRequired,
+        }).isRequired,
         Featured: PropTypes.bool.isRequired,
     }).isRequired,
     isFavorite: PropTypes.bool.isRequired,
