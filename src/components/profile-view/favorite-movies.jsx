@@ -34,12 +34,14 @@ FavouriteMovies.propTypes = {
         PropTypes.shape({
             _id: PropTypes.string.isRequired,
             Title: PropTypes.string.isRequired,
-            imageUrl: PropTypes.string.isRequired, // Ensure this matches the backend property
+            ImagePath: PropTypes.string.isRequired, // Ensure this matches the backend property
             Description: PropTypes.string.isRequired,
             Genre: PropTypes.shape({
                 Name: PropTypes.string.isRequired,
             }).isRequired,
-            Director: PropTypes.string.isRequired,
+            Director: PropTypes.shape({
+                Name: PropTypes.string.isRequired,
+            }).isRequired,
             Featured: PropTypes.bool.isRequired,
         })
     ).isRequired,
