@@ -4,6 +4,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col } from 'react-bootstrap';
 
 export const FavouriteMovies = ({ user, favouriteMovies, updateUser }) => {
+    console.log("FavouriteMovies:", favouriteMovies); // Debugging
     return (
         <>
             <h1 className="my-5">Favorite Movies</h1>
@@ -34,7 +35,7 @@ FavouriteMovies.propTypes = {
         PropTypes.shape({
             _id: PropTypes.string.isRequired,
             Title: PropTypes.string.isRequired,
-            ImagePath: PropTypes.string.isRequired, // Ensure this matches the backend property
+            ImagePath: PropTypes.string, // Ensure this matches the backend property
             Description: PropTypes.string.isRequired,
             Genre: PropTypes.shape({
                 Name: PropTypes.string.isRequired,
