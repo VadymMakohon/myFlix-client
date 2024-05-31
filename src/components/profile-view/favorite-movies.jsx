@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col } from 'react-bootstrap';
 
-export const FavouriteMovies = ({ user, favouriteMovies }) => {
+export const FavouriteMovies = ({ user, favouriteMovies, updateUser }) => {
     return (
         <>
             <h1 className="my-5">Favorite Movies</h1>
@@ -16,6 +16,7 @@ export const FavouriteMovies = ({ user, favouriteMovies }) => {
                             <MovieCard
                                 movie={movie}
                                 isFavorite={user.FavoriteMovies.includes(movie._id)}
+                                updateUser={updateUser}
                             />
                         </Col>
                     ))}
@@ -33,7 +34,7 @@ FavouriteMovies.propTypes = {
         PropTypes.shape({
             _id: PropTypes.string.isRequired,
             Title: PropTypes.string.isRequired,
-            Image: PropTypes.string.isRequired,
+            imageUrl: PropTypes.string.isRequired, // Ensure this matches the backend property
             Description: PropTypes.string.isRequired,
             Genre: PropTypes.shape({
                 Name: PropTypes.string.isRequired,
@@ -42,4 +43,5 @@ FavouriteMovies.propTypes = {
             Featured: PropTypes.bool.isRequired,
         })
     ).isRequired,
+    updateUser: PropTypes.func.isRequired,
 };

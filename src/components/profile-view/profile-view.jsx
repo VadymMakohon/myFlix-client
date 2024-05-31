@@ -3,7 +3,7 @@ import { UserInfo } from "./user-info";
 import { Button, Card, Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FavouriteMovies } from "./favorite-movies"; // Import the FavoriteMovies component
+import { FavouriteMovies } from "./favorite-movies";
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
@@ -13,6 +13,11 @@ export const ProfileView = ({ localUser, token }) => {
     const [password, setPassword] = useState(localUser.Password);
     const [user, setUser] = useState(localUser);
     const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+    const updateUser = (updatedUser) => {
+        setUser(updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -91,6 +96,9 @@ export const ProfileView = ({ localUser, token }) => {
                     if (favoriteMoviesResponse.ok) {
                         const favoriteMoviesData = await favoriteMoviesResponse.json();
                         setFavoriteMovies(favoriteMoviesData);
+                    } else if (favoriteMoviesResponse.status === 404) {
+                        console.error("Favorite movies not found for this user");
+                        setFavoriteMovies([]); // Set to empty array if not found
                     } else {
                         console.error("Failed to fetch favorite movies");
                     }
@@ -156,7 +164,11 @@ export const ProfileView = ({ localUser, token }) => {
             <Row>
                 <Col className="mb-5" xs={12} md={12}>
                     {favoriteMovies && (
-                        <FavouriteMovies user={user} favouriteMovies={favoriteMovies} />
+                        <FavouriteMovies
+                            user={user}
+                            favouriteMovies={favoriteMovies}
+                            updateUser={updateUser}
+                        />
                     )}
                 </Col>
             </Row>

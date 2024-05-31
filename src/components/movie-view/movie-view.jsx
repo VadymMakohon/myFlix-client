@@ -5,14 +5,18 @@ import "./movie-view.scss";
 export const MovieView = ({ movies }) => {
     const { movieId } = useParams();
 
-    const movie = movies.find((m) => m.id === movieId);
+    const movie = movies.find((m) => m._id === movieId); // Ensure you're comparing the correct ID field
+
+    if (!movie) {
+        return <div>Movie not found</div>;
+    }
 
     return (
         <div>
             <div>
                 <img
-                    src={movie.Image}
-                    className="img-fluid  justify-content-md-center"
+                    src={movie.imageUrl} // Ensure this matches the correct property name
+                    className="img-fluid justify-content-md-center"
                     alt="Movie Poster"
                 />
             </div>
