@@ -26,11 +26,11 @@ img {
 }
 
 .navbar {
-  background-color: #108bd2;
+  background-color: #343a40;
 }
 
 .navbar .navbar-brand, .navbar .nav-link {
-  color: #5d59d7 !important;
+  color: #fff !important;
 }
 
 .navbar .navbar-brand:hover, .navbar .nav-link:hover {

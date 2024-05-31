@@ -7,12 +7,16 @@ export const MovieView = ({ movies }) => {
 
     const movie = movies.find((m) => m.id === movieId);
 
+    if (!movie) {
+        return <div>Movie not found</div>;
+    }
+
     return (
         <div>
             <div>
                 <img
                     src={movie.ImagePath}
-                    className="img-fluid  justify-content-md-center"
+                    className="img-fluid justify-content-md-center"
                     alt="Movie Poster"
                 />
             </div>

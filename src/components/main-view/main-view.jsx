@@ -31,14 +31,14 @@ export const MainView = () => {
                 return response.json();
             })
             .then((data) => {
-                const moviesFromApi = data.map((data) => ({
-                    id: data._id,
-                    Title: data.Title,
-                    ImagePath: data.ImagePath,
-                    Description: data.Description,
-                    Genre: data.Genre,
-                    Director: data.Director,
-                    Featured: data.Featured
+                const moviesFromApi = data.map((movie) => ({
+                    id: movie._id, // Assigning _id to id
+                    Title: movie.Title,
+                    ImagePath: movie.ImagePath,
+                    Description: movie.Description,
+                    Genre: movie.Genre,
+                    Director: movie.Director,
+                    Featured: movie.Featured
                 }));
                 setMovies(moviesFromApi);
             })
