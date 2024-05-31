@@ -25,6 +25,18 @@ img {
   margin-bottom: 16px;
 }
 
+.navbar {
+  background-color: #108bd2;
+}
+
+.navbar .navbar-brand, .navbar .nav-link {
+  color: #5d59d7 !important;
+}
+
+.navbar .navbar-brand:hover, .navbar .nav-link:hover {
+  color: #ccc !important;
+}
+
 .card-body {
   align-items: left;
   flex-direction: column;

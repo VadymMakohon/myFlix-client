@@ -1,0 +1,12 @@
+.navbar {
+    background-color: #108bd2;
+
+    .navbar-brand,
+    .nav-link {
+        color: #5d59d7 !important; // White text color for better contrast
+
+        &:hover {
+            color: #cccccc !important; // Slightly different color on hover for better user experience
+        }
+    }
+}

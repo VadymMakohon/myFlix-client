@@ -27279,14 +27279,14 @@ const MainView = ()=>{
             if (!response.ok) throw new Error("Failed to fetch movies");
             return response.json();
         }).then((data)=>{
-            const moviesFromApi = data.map((movie)=>({
-                    id: movie._id,
-                    Title: movie.Title,
-                    ImagePath: movie.ImagePath,
-                    Description: movie.Description,
-                    Genre: movie.Genre,
-                    Director: movie.Director,
-                    Featured: movie.Featured
+            const moviesFromApi = data.map((data)=>({
+                    id: data._id,
+                    Title: data.Title,
+                    ImagePath: data.ImagePath,
+                    Description: data.Description,
+                    Genre: data.Genre,
+                    Director: data.Director,
+                    Featured: data.Featured
                 }));
             setMovies(moviesFromApi);
         }).catch((error)=>{
@@ -42197,10 +42197,11 @@ parcelHelpers.export(exports, "NavigationBar", ()=>NavigationBar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-var _navigationBarJsx = require("./navigation-bar.jsx");
+var _navigationBarScss = require("./navigation-bar.scss");
 const NavigationBar = ({ user, onLoggedOut })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
-        bg: "light",
+        bg: "dark",
+        variant: "dark",
         expand: "lg",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
@@ -42309,7 +42310,7 @@ $RefreshReg$(_c, "NavigationBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./navigation-bar.jsx":"bsPVM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2vVqf":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./navigation-bar.scss":"dnXvl"}],"dnXvl":[function() {},{}],"2vVqf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
