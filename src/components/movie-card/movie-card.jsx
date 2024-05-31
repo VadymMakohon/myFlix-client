@@ -16,7 +16,7 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
             return;
         }
 
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie._id)}`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
             headers: {
                 "Authorization": `Bearer ${token}`,
                 'Content-Type': 'application/json'
-            }
+            },
         })
             .then((response) => {
                 if (!response.ok) {
