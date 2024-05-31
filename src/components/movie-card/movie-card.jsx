@@ -10,13 +10,10 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
-    const [addTitle, setAddTitle] = useState("");
-    const [delTitle, setDelTitle] = useState("");
-
     // ADD MOVIE TO FAVORITES
     const addToFavorites = () => {
         if (user.FavoriteMovies.includes(movie.id)) {
-            alert("Movie is already in your favorites.");
+            alert("This movie is already in your favorites.");
             return;
         }
 
@@ -33,16 +30,15 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
                 }
                 return response.json();
             })
-            .then((user) => {
-                console.log(user);
-                if (user) {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    setUser(user);
-                    alert("Movie added to favorites successfully!");
-                }
+            .then((updatedUser) => {
+                alert("Movie added to favorites successfully!");
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+                setUser(updatedUser);
+                updateUser(updatedUser);
             })
             .catch((error) => {
                 console.error(error);
+                alert("An error occurred while adding the movie to favorites.");
             });
     };
 
@@ -59,34 +55,19 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
                 if (!response.ok) {
                     throw new Error("Failed to remove movie from favorites.");
                 }
-                alert("Movie removed from favorites successfully!");
-                window.location.reload();
                 return response.json();
             })
-            .then((user) => {
-                if (user) {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    setUser(user);
-                }
+            .then((updatedUser) => {
+                alert("Movie removed from favorites successfully!");
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+                setUser(updatedUser);
+                updateUser(updatedUser);
             })
             .catch((error) => {
                 console.error(error);
+                alert("An error occurred while removing the movie from favorites.");
             });
     };
-
-    const handleAddToFavorites = () => {
-        setAddTitle(movie.Title);
-    };
-    const handleRemoveFromFavorites = () => {
-        setDelTitle(movie.Title);
-    };
-
-    if (addTitle) {
-        addToFavorites();
-    }
-    if (delTitle) {
-        removeFromFavorites();
-    }
 
     return (
         <>
@@ -101,16 +82,16 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
             </Link>
             <Card>
                 {isFavorite ? (
-                    <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove from favorites</Button>
+                    <Button variant="primary" onClick={removeFromFavorites}>Remove from favorites</Button>
                 ) : (
-                    <Button variant="primary" onClick={handleAddToFavorites}>Add to favorites</Button>
+                    <Button variant="primary" onClick={addToFavorites}>Add to favorites</Button>
                 )}
             </Card>
         </>
     );
 };
 
-const propTypes = {
+MovieCard.propTypes = {
     movie: PropTypes.shape({
         id: PropTypes.string.isRequired,
         Title: PropTypes.string.isRequired,
@@ -119,12 +100,11 @@ const propTypes = {
         Genre: PropTypes.shape({
             Name: PropTypes.string.isRequired,
         }).isRequired,
-        Director: PropTypes.string.isRequired,
+        Director: PropTypes.shape({
+            Name: PropTypes.string.isRequired, // If Director is an object with Name
+        }).isRequired, // If Director is an object, update this accordingly
         Featured: PropTypes.bool.isRequired,
     }).isRequired,
     isFavorite: PropTypes.bool.isRequired,
     updateUser: PropTypes.func.isRequired,
 };
-
-
-

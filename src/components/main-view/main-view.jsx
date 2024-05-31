@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -48,6 +48,11 @@ export const MainView = () => {
                 // For example, show a message or redirect to an error page
             });
     }, [token]);
+
+    const updateUser = (updatedUser) => {
+        setUser(updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+    };
 
     return (
         <BrowserRouter>
@@ -112,6 +117,7 @@ export const MainView = () => {
                                         <MovieCard
                                             movie={movie}
                                             isFavorite={user.FavoriteMovies.includes(movie.id)}
+                                            updateUser={updateUser}
                                         />
                                     </Col>
                                 ))
