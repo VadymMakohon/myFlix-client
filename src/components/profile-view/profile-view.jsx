@@ -36,9 +36,7 @@ export const ProfileView = ({ localUser, token, updateUser }) => {
             );
             if (response.ok) {
                 alert("Update successful");
-                const updatedUser = await response.json();
-                setUser(updatedUser);
-                updateUser(updatedUser);
+                window.location.reload();
             }
         } catch (error) {
             console.error(error);

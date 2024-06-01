@@ -32,7 +32,7 @@ export const MainView = () => {
             })
             .then((data) => {
                 const moviesFromApi = data.map((movie) => ({
-                    id: movie._id, // Assigning _id to id
+                    id: movie._id,
                     Title: movie.Title,
                     ImagePath: movie.ImagePath,
                     Description: movie.Description,
@@ -40,6 +40,7 @@ export const MainView = () => {
                     Director: movie.Director,
                     Featured: movie.Featured
                 }));
+                console.log("Fetched Movies:", moviesFromApi); // Debugging
                 setMovies(moviesFromApi);
             })
             .catch((error) => {
@@ -73,7 +74,12 @@ export const MainView = () => {
                                 <Navigate to="/" />
                             ) : (
                                 <Col md={5}>
-                                    <SignupView />
+                                    <SignupView onLoggedIn={(user, token) => {
+                                        setUser(user);
+                                        setToken(token);
+                                        localStorage.setItem('user', JSON.stringify(user));
+                                        localStorage.setItem('token', token);
+                                    }} />
                                 </Col>
                             )
                         }
@@ -85,7 +91,12 @@ export const MainView = () => {
                                 <Navigate to="/" />
                             ) : (
                                 <Col md={5}>
-                                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                                    <LoginView onLoggedIn={(user, token) => {
+                                        setUser(user);
+                                        setToken(token);
+                                        localStorage.setItem('user', JSON.stringify(user));
+                                        localStorage.setItem('token', token);
+                                    }} />
                                 </Col>
                             )
                         }
@@ -113,10 +124,10 @@ export const MainView = () => {
                                 <Col>The list is empty!</Col>
                             ) : (
                                 movies.map((movie) => (
-                                    <Col className="mb-5" key={movie.id} md={3} sm={12}>
+                                    <Col className="mb-5" key={movie._id} md={3} sm={12}>
                                         <MovieCard
                                             movie={movie}
-                                            isFavorite={user?.FavoriteMovies?.includes(movie.id) || false} // Ensure isFavorite is always a boolean
+                                            isFavorite={user.FavoriteMovies.includes(movie._id)}
                                             updateUser={updateUser}
                                         />
                                     </Col>
