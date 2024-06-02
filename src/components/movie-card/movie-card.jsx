@@ -42,7 +42,7 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
     };
 
     const removeFromFavorites = () => {
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie._id)}`, {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -91,7 +91,7 @@ export const MovieCard = ({ movie, isFavorite, updateUser }) => {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
         Title: PropTypes.string.isRequired,
         ImagePath: PropTypes.string,
         Description: PropTypes.string.isRequired,

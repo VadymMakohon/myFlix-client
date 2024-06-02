@@ -33,7 +33,7 @@ FavouriteMovies.propTypes = {
     }).isRequired,
     favouriteMovies: PropTypes.arrayOf(
         PropTypes.shape({
-            _id: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
             Title: PropTypes.string.isRequired,
             ImagePath: PropTypes.string, // Ensure this matches the backend property
             Description: PropTypes.string.isRequired,
