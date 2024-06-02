@@ -3,20 +3,21 @@ import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col } from 'react-bootstrap';
 
-export const FavouriteMovies = ({ user, favouriteMovies, updateUser }) => {
+export const FavouriteMovies = ({ user, favouriteMovies, updateUser, movies }) => {
     console.log("FavouriteMovies:", favouriteMovies); // Debugging
+    const favList = movies.filter(m => favouriteMovies.includes(m.id));
     return (
         <>
             <h1 className="my-5">Favorite Movies</h1>
-            {favouriteMovies.length === 0 ? (
+            {favList.length === 0 ? (
                 <div>List is empty</div>
             ) : (
                 <Row md={12}>
-                    {favouriteMovies.map((movie) => (
-                        <Col key={movie._id} className="mb-5" md={3}>
+                    {favList.map((movie) => (
+                        <Col key={movie.id} className="mb-5" md={3}>
                             <MovieCard
                                 movie={movie}
-                                isFavorite={user?.FavoriteMovies?.includes(movie._id) || false}
+                                isFavorite={user?.FavoriteMovies?.includes(movie.id) || false}
                                 updateUser={updateUser}
                             />
                         </Col>
