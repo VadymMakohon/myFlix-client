@@ -90,7 +90,7 @@ export const ProfileView = ({ localUser, token, updateUser, movies }) => {
                     );
                     if (favoriteMoviesResponse.ok) {
                         const favoriteMoviesData = await favoriteMoviesResponse.json();
-                        console.log("Favorite Movies Data:", favoriteMoviesData); // Debugging
+                        // console.log("Favorite Movies Data:", favoriteMoviesData); // Debugging
                         setFavoriteMovies(favoriteMoviesData);
                     } else if (favoriteMoviesResponse.status === 404) {
                         console.error("Favorite movies not found for this user");

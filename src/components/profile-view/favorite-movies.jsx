@@ -4,7 +4,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col } from 'react-bootstrap';
 
 export const FavouriteMovies = ({ user, favouriteMovies, updateUser, movies }) => {
-    console.log("FavouriteMovies:", favouriteMovies); // Debugging
+    // console.log("FavouriteMovies:", favouriteMovies); // Debugging
     const favList = movies.filter(m => favouriteMovies.includes(m.id));
     return (
         <>
@@ -32,7 +32,8 @@ FavouriteMovies.propTypes = {
     user: PropTypes.shape({
         FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,
-    favouriteMovies: PropTypes.arrayOf(
+    favouriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired, // Expect an array of strings (IDs)
+    movies: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             Title: PropTypes.string.isRequired,

@@ -40,7 +40,7 @@ export const MainView = () => {
                     Director: movie.Director,
                     Featured: movie.Featured
                 }));
-                console.log("Fetched Movies:", moviesFromApi); // Debugging
+                // console.log("Fetched Movies:", moviesFromApi); // Debugging
                 setMovies(moviesFromApi);
             })
             .catch((error) => {
@@ -54,6 +54,29 @@ export const MainView = () => {
         setUser(updatedUser);
         localStorage.setItem('user', JSON.stringify(updatedUser));
     };
+
+    useEffect(() => {
+        if (!token || !user) {
+            return;
+        }
+
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${user._id}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data");
+                }
+                return response.json();
+            })
+            .then((userData) => {
+                setUser(userData);
+                localStorage.setItem('user', JSON.stringify(userData));
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }, [token, user._id]);
 
     return (
         <BrowserRouter>
