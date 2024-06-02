@@ -37,7 +37,10 @@ export const ProfileView = ({ localUser, token, updateUser, movies }) => {
             if (response.ok) {
                 const updatedUser = await response.json();
                 alert("Update successful");
+                setUser(updatedUser);
+                setFavoriteMovies(updatedUser.FavoriteMovies);
                 updateUser(updatedUser);
+                fetchUserData(); // Re-fetch the updated user data
             } else {
                 alert("Update failed");
             }
