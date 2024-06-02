@@ -34268,7 +34268,7 @@ const MovieCard = ({ movie, isFavorite, updateUser })=>{
             alert("This movie is already in your favorites.");
             return;
         }
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie._id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -34288,7 +34288,7 @@ const MovieCard = ({ movie, isFavorite, updateUser })=>{
         });
     };
     const removeFromFavorites = ()=>{
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie._id)}`, {
+        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`,
