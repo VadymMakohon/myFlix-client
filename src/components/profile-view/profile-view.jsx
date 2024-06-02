@@ -7,7 +7,7 @@ import { FavouriteMovies } from "./favorite-movies"; // Import the FavoriteMovie
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
 
-export const ProfileView = ({ localUser, token, updateUser }) => {
+export const ProfileView = ({ localUser, token, updateUser, movies }) => {
     const [username, setUsername] = useState(localUser.Username);
     const [email, setEmail] = useState(localUser.Email);
     const [password, setPassword] = useState(localUser.Password);
@@ -164,6 +164,7 @@ export const ProfileView = ({ localUser, token, updateUser }) => {
                             user={user}
                             favouriteMovies={favoriteMovies}
                             updateUser={updateUser}
+                            movies={movies}
                         />
                     )}
                 </Col>

@@ -42354,7 +42354,7 @@ var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _profileViewScss = require("./profile-view.scss");
 var _s = $RefreshSig$();
-const ProfileView = ({ localUser, token, updateUser })=>{
+const ProfileView = ({ localUser, token, updateUser, movies })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)(localUser.Username);
     const [email, setEmail] = (0, _react.useState)(localUser.Email);
@@ -42593,7 +42593,8 @@ const ProfileView = ({ localUser, token, updateUser })=>{
                     children: favoriteMovies && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMovies.FavouriteMovies), {
                         user: user,
                         favouriteMovies: favoriteMovies,
-                        updateUser: updateUser
+                        updateUser: updateUser,
+                        movies: movies
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 163,
