@@ -35,8 +35,11 @@ export const ProfileView = ({ localUser, token, updateUser, movies }) => {
                 }
             );
             if (response.ok) {
+                const updatedUser = await response.json();
                 alert("Update successful");
-                window.location.reload();
+                updateUser(updatedUser);
+            } else {
+                alert("Update failed");
             }
         } catch (error) {
             console.error(error);
@@ -69,43 +72,43 @@ export const ProfileView = ({ localUser, token, updateUser, movies }) => {
         }
     };
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await fetch(
-                    `https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${user._id}`,
+    const fetchUserData = async () => {
+        try {
+            const response = await fetch(
+                `https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${user._id}`,
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            if (response.ok) {
+                const userData = await response.json();
+                setUser(userData);
+
+                const favoriteMoviesResponse = await fetch(
+                    `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
                 );
-                if (response.ok) {
-                    const userData = await response.json();
-                    setUser(userData);
-
-                    const favoriteMoviesResponse = await fetch(
-                        `https://myflix-2024-e9df13718d8a.herokuapp.com/users/${user.Username}/movies`,
-                        {
-                            headers: { Authorization: `Bearer ${token}` },
-                        }
-                    );
-                    if (favoriteMoviesResponse.ok) {
-                        const favoriteMoviesData = await favoriteMoviesResponse.json();
-                        // console.log("Favorite Movies Data:", favoriteMoviesData); // Debugging
-                        setFavoriteMovies(favoriteMoviesData);
-                    } else if (favoriteMoviesResponse.status === 404) {
-                        console.error("Favorite movies not found for this user");
-                        setFavoriteMovies([]); // Set to empty array if not found
-                    } else {
-                        console.error("Failed to fetch favorite movies");
-                    }
+                if (favoriteMoviesResponse.ok) {
+                    const favoriteMoviesData = await favoriteMoviesResponse.json();
+                    // console.log("Favorite Movies Data:", favoriteMoviesData); // Debugging
+                    setFavoriteMovies(favoriteMoviesData);
+                } else if (favoriteMoviesResponse.status === 404) {
+                    console.error("Favorite movies not found for this user");
+                    setFavoriteMovies([]); // Set to empty array if not found
                 } else {
-                    console.error("Failed to fetch user data");
+                    console.error("Failed to fetch favorite movies");
                 }
-            } catch (error) {
-                console.error(error);
+            } else {
+                console.error("Failed to fetch user data");
             }
-        };
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
+    useEffect(() => {
         fetchUserData();
     }, [user._id, user.Username, token]);
 
@@ -163,7 +166,11 @@ export const ProfileView = ({ localUser, token, updateUser, movies }) => {
                         <FavouriteMovies
                             user={user}
                             favouriteMovies={favoriteMovies}
-                            updateUser={updateUser}
+                            updateUser={(updatedUser) => {
+                                setUser(updatedUser);
+                                setFavoriteMovies(updatedUser.FavoriteMovies);
+                                updateUser(updatedUser);
+                            }}
                             movies={movies}
                         />
                     )}
