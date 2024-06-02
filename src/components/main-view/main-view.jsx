@@ -76,7 +76,7 @@ export const MainView = () => {
             .catch((error) => {
                 console.error("Error fetching user data:", error);
             });
-    }, [token, user._id]);
+    }, [token, user?._id]);
 
     return (
         <BrowserRouter>

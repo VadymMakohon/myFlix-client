@@ -27319,7 +27319,7 @@ const MainView = ()=>{
         });
     }, [
         token,
-        user._id
+        user?._id
     ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
