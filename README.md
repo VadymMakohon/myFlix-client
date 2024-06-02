@@ -14,6 +14,8 @@ The myFlix-client is a front web application that will provide users with access
 6. Install react-router and react-router-dom npm install react-router react-router-dom --save
 7. Install parcel as a local developer dependency npm install --save-dev parcel@2.12.0
 
+## Demo
+![Screenshot 2024-06-02 at 1 00 12 PM](https://github.com/VadymMakohon/myFlix-client/assets/138728243/1e3d8acf-0469-4a0c-8074-94f88e064460)
 # Run the application
 
 parcel src/index.html
