@@ -124,10 +124,10 @@ export const MainView = () => {
                                 <Col>The list is empty!</Col>
                             ) : (
                                 movies.map((movie) => (
-                                    <Col className="mb-5" key={movie._id} md={3} sm={12}>
+                                    <Col className="mb-5" key={movie.id} md={3} sm={12}>
                                         <MovieCard
                                             movie={movie}
-                                            isFavorite={user.FavoriteMovies.includes(movie._id)}
+                                            isFavorite={user.FavoriteMovies.includes(movie.id)}
                                             updateUser={updateUser}
                                         />
                                     </Col>
