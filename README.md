@@ -35,7 +35,7 @@ Open the Web Browser at http://localhost:1234
 ### Development
 - [Parcel](https://parceljs.org/)
 
-## API Used
+## API's Backend
 The client utilizes the [movie-api](https://vadymmakohon.github.io/myFlix/) built as a prerequisite for this particular client.
 
 # Contributors
