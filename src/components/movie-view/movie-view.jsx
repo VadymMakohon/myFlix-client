@@ -11,6 +11,13 @@ export const MovieView = ({ movies }) => {
         return <div>Movie not found</div>;
     }
 
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const date = new Date(dateString);
+        if (isNaN(date)) return "N/A"; // Handle invalid date
+        return date.toLocaleDateString(undefined, options);
+    };
+
     return (
         <div>
             <div>
@@ -33,12 +40,14 @@ export const MovieView = ({ movies }) => {
                 <span>{movie.Genre.Name}</span>
             </div>
             <div>
-                <span>Director Name: {movie.Director.Name}</span>
-                <p><strong>Bio: </strong>{movie.Director.Bio}</p>
-            </div>
-            <div>
                 <span>Featured: </span>
                 <span>{movie.Featured ? "True" : "False"}</span>
+            </div>
+            <div>
+                <span> <strong>Director Name: </strong>{movie.Director.Name} </span>
+                <p><strong>Bio: </strong>{movie.Director.Bio}</p>
+                <p><strong>Birth: </strong>{formatDate(movie.Director.Birth)}</p>
+                <p><strong>Death: </strong>{movie.Director.Death ? formatDate(movie.Director.Death) : "N/A"}</p>
             </div>
             <Link to={`/`}>
                 <button className="back-button">Back</button>
