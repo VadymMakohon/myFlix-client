@@ -15,6 +15,7 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         if (!token) {
@@ -40,13 +41,10 @@ export const MainView = () => {
                     Director: movie.Director,
                     Featured: movie.Featured
                 }));
-                // console.log("Fetched Movies:", moviesFromApi); // Debugging
                 setMovies(moviesFromApi);
             })
             .catch((error) => {
                 console.error("Error fetching movies:", error);
-                // Provide feedback to the user
-                // For example, show a message or redirect to an error page
             });
     }, [token]);
 
@@ -55,28 +53,17 @@ export const MainView = () => {
         localStorage.setItem('user', JSON.stringify(updatedUser));
     };
 
-    useEffect(() => {
-        if (!token || !user) {
-            return;
-        }
+    const handleSearch = (event) => {
+        event.preventDefault();
+    };
 
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${user._id}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch user data");
-                }
-                return response.json();
-            })
-            .then((userData) => {
-                setUser(userData);
-                localStorage.setItem('user', JSON.stringify(userData));
-            })
-            .catch((error) => {
-                console.error("Error fetching user data:", error);
-            });
-    }, [token, user?._id]);
+    const filteredMovies = movies.filter((movie) => {
+        const searchLower = searchQuery.toLowerCase();
+        const titleMatch = movie.Title.toLowerCase().includes(searchLower);
+        const genreMatch = movie.Genre.Name.toLowerCase().includes(searchLower);
+        const directorMatch = movie.Director.Name.toLowerCase().includes(searchLower);
+        return titleMatch || genreMatch || directorMatch;
+    });
 
     return (
         <BrowserRouter>
@@ -88,6 +75,19 @@ export const MainView = () => {
                     localStorage.clear();
                 }}
             />
+            <Row className="justify-content-md-center">
+                <Col md={8}>
+                    <form onSubmit={handleSearch}>
+                        <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder="Search for a movie by title, genre, or director"
+                        />
+                        <button type="submit">Search</button>
+                    </form>
+                </Col>
+            </Row>
             <Row className="justify-content-md-center">
                 <Routes>
                     <Route
@@ -143,10 +143,10 @@ export const MainView = () => {
                         element={
                             !user ? (
                                 <Navigate to="/login" replace />
-                            ) : movies.length === 0 ? (
+                            ) : filteredMovies.length === 0 ? (
                                 <Col>The list is empty!</Col>
                             ) : (
-                                movies.map((movie) => (
+                                filteredMovies.map((movie) => (
                                     <Col className="mb-5" key={movie.id} md={3} sm={12}>
                                         <MovieCard
                                             movie={movie}

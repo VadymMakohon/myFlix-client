@@ -27269,6 +27269,7 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([]);
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
+    const [searchQuery, setSearchQuery] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://myflix-2024-e9df13718d8a.herokuapp.com/movies", {
@@ -27288,12 +27289,9 @@ const MainView = ()=>{
                     Director: movie.Director,
                     Featured: movie.Featured
                 }));
-            // console.log("Fetched Movies:", moviesFromApi); // Debugging
             setMovies(moviesFromApi);
         }).catch((error)=>{
             console.error("Error fetching movies:", error);
-        // Provide feedback to the user
-        // For example, show a message or redirect to an error page
         });
     }, [
         token
@@ -27302,25 +27300,16 @@ const MainView = ()=>{
         setUser(updatedUser);
         localStorage.setItem("user", JSON.stringify(updatedUser));
     };
-    (0, _react.useEffect)(()=>{
-        if (!token || !user) return;
-        fetch(`https://myflix-2024-e9df13718d8a.herokuapp.com/users/id/${user._id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            if (!response.ok) throw new Error("Failed to fetch user data");
-            return response.json();
-        }).then((userData)=>{
-            setUser(userData);
-            localStorage.setItem("user", JSON.stringify(userData));
-        }).catch((error)=>{
-            console.error("Error fetching user data:", error);
-        });
-    }, [
-        token,
-        user?._id
-    ]);
+    const handleSearch = (event)=>{
+        event.preventDefault();
+    };
+    const filteredMovies = movies.filter((movie)=>{
+        const searchLower = searchQuery.toLowerCase();
+        const titleMatch = movie.Title.toLowerCase().includes(searchLower);
+        const genreMatch = movie.Genre.Name.toLowerCase().includes(searchLower);
+        const directorMatch = movie.Director.Name.toLowerCase().includes(searchLower);
+        return titleMatch || genreMatch || directorMatch;
+    });
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
@@ -27332,7 +27321,48 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 83,
+                lineNumber: 70,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                className: "justify-content-md-center",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 8,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                        onSubmit: handleSearch,
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "text",
+                                value: searchQuery,
+                                onChange: (e)=>setSearchQuery(e.target.value),
+                                placeholder: "Search for a movie by title, genre, or director"
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 81,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                type: "submit",
+                                children: "Search"
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 87,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 80,
+                        columnNumber: 21
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 79,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 78,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27446,13 +27476,13 @@ const MainView = ()=>{
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 145,
                                 columnNumber: 33
-                            }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                            }, void 0) : filteredMovies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                 children: "The list is empty!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 147,
                                 columnNumber: 33
-                            }, void 0) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                            }, void 0) : filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                     className: "mb-5",
                                     md: 3,
                                     sm: 12,
@@ -27520,11 +27550,11 @@ const MainView = ()=>{
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 82,
+        lineNumber: 69,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "mlwcRecAzW7EtVXZARXeBBWQlmQ=");
+_s(MainView, "LdyjrRTE5qU9MHJ5mGsKgsFaypI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
