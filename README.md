@@ -16,7 +16,8 @@ The myFlix-client is a front web application that will provide users with access
 ### Hosting
 The client application is hosted on [Netlify](https://movie-app-777777.netlify.app/) and can be accessed through the provided link.
 
-![Screenshot 2024-06-02 at 1 00 12 PM](https://github.com/VadymMakohon/myFlix-client/assets/138728243/1e3d8acf-0469-4a0c-8074-94f88e064460)
+![Screenshot 2024-06-04 at 8 43 42 AM](https://github.com/VadymMakohon/myFlix-client/assets/138728243/afef05c8-3a48-4b8d-a729-4795df59575e)
+
 # Run the application locoly by using the following command:
 ```
 parcel src/index.html
