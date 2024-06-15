@@ -11,7 +11,7 @@ The myFlix-client project follows the below version support policy:
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within myFlix-client, please send an email to errorks7@gmail.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within myFlix-client, please send an email to vadymakohon@gmail.com. All security vulnerabilities will be promptly addressed.
 
 We strive to provide timely updates on the status of reported vulnerabilities and will keep you informed throughout the process. Once a vulnerability report is received, we will acknowledge receipt of the report and investigate its validity and severity.
 
